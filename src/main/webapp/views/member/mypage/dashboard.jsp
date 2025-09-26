@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 <html lang="ko">
-<head>
+<head>   
   <meta charset="UTF-8" />
   <title>한눈에 보기</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
