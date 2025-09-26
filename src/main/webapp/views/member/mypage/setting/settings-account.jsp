@@ -1,7 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<c:set var="contextPath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -132,25 +132,25 @@
   }
 
   /* 폼 행: 좌측 라벨, 우측 컨트롤 */
-  .settings-account section > article > div > div{
+  .settings-account section > article >form > div > div{
     display:grid;
     grid-template-columns:160px 1fr;
     align-items:start;
     gap:14px;
     padding:10px 0;
   }
-  .settings-account section > article > div > div > div:first-child{
+  .settings-account section > article >form > div > div > div:first-child{
     color:#7A746E; font-weight:700; font-size:14px; line-height:36px;
   }
-  .settings-account section > article > div > div > div:last-child{
+  .settings-account section > article >form > div > div > div:last-child{
     font-size:15px; color:var(--text);
   }
 
   /* 상단 이메일 블록: 주소 + 안내문 */
-  .settings-account section > article > div > div:first-child > div:last-child > div:first-child{
+  .settings-account section > article >form > div > div:first-child > div:last-child > div:first-child{
     color:#3b3b3b; font-weight:700; margin-bottom:4px;
   }
-  .settings-account section > article > div > div:first-child > div:last-child > div:last-child{
+  .settings-account section > article >form > div > div:first-child > div:last-child > div:last-child{
     color:#9AA0A6; font-size:13.5px;
   }
 
@@ -163,23 +163,23 @@
   .settings-account section input::placeholder{ color:#B0B0B0; }
 
   /* 비밀번호 변경 버튼 */
-  .settings-account section > article > div > div:nth-of-type(5) > button{
+  .settings-account section > article >form > div > div:nth-of-type(5) > button{
     height:38px; padding:0 16px; border-radius:10px; cursor:pointer;
     background:#F5E9DC; border:1px solid #EAD8C5; color:#6F553D; font-weight:800;
     box-shadow:0 2px 8px rgba(0,0,0,.05);
   }
-  .settings-account section > article > div > div:nth-of-type(5) > button:hover{ filter:brightness(1.03); }
+  .settings-account section > article >form > div > div:nth-of-type(5) > button:hover{ filter:brightness(1.03); }
 
   /* 구분선 */
-  .settings-account section > article > div > hr{
+  .settings-account section > article >form > div > hr{
     border:0; height:1px; background:#F1E5D3; margin:8px 0 6px;
   }
 
   /* 마케팅 수신 동의 영역 */
-  .settings-account section > article > div > div:last-of-type > div:last-child{
+  .settings-account section > article >form > div > div:last-of-type > div:last-child{
     display:flex; flex-direction:column; gap:10px;
   }
-  .settings-account section > article > div > div:last-of-type > div:last-child > div{
+  .settings-account section > article >form > div > div:last-of-type > div:last-child > div{
     display:grid; grid-template-columns:1fr auto; align-items:center;
   }
 
@@ -201,42 +201,56 @@
   .settings-account section input[type="checkbox"]:checked::after{ left:18px; }
 
   /* 프로필 페이지용 아바타 스타일이 섞이지 않도록 예외 처리 */
-  .settings-account section > article > div > div:first-child:has(button) > div:last-child > div:first-child{
+  .settings-account section > article >form > div > div:first-child:has(button) > div:last-child > div:first-child{
     width:56px; height:56px; border-radius:50%;
     display:flex; align-items:center; justify-content:center;
     background:#FFF3E1; color:#6F553D; font-weight:800;
     border:1px solid #F2E3CF;
   }
-  .settings-account section > article > div > div:first-child:not(:has(button)) > div:last-child > div:first-child{
+  .settings-account section > article >form > div > div:first-child:not(:has(button)) > div:last-child > div:first-child{
     width:auto; height:auto; border-radius:0; background:transparent; border:none;
     color:inherit; font-weight:700; display:inline;
   }
 
   /* 이메일/안내문 나란히 정렬(프로필 아바타 케이스 제외) */
-  .settings-account section > article > div > div:first-child > div:last-child:not(:has(button)){
+  .settings-account section > article >form > div > div:first-child > div:last-child:not(:has(button)){
     display:flex; align-items:baseline; column-gap:16px; row-gap:4px; flex-wrap:wrap;
   }
-  .settings-account section > article > div > div:first-child > div:last-child:not(:has(button)) > div:first-child{
+  .settings-account section > article >form > div > div:first-child > div:last-child:not(:has(button)) > div:first-child{
     font-weight:700; color:#2b2b2b; white-space:nowrap;
   }
-  .settings-account section > article > div > div:first-child > div:last-child:not(:has(button)) > div:last-child{
+  .settings-account section > article >form > div > div:first-child > div:last-child:not(:has(button)) > div:last-child{
     color:#9AA0A6; font-size:13.5px; line-height:1.5; white-space:nowrap;
   }
   @media (max-width:560px){
-    .settings-account section > article > div > div:first-child > div:last-child:not(:has(button)){
+    .settings-account section > article >form > div > div:first-child > div:last-child:not(:has(button)){
       flex-direction:column; align-items:flex-start;
     }
-    .settings-account section > article > div > div:first-child > div:last-child:not(:has(button)) > div:last-child{
+    .settings-account section > article >form > div > div:first-child > div:last-child:not(:has(button)) > div:last-child{
       white-space:normal;
     }
   }
 
   /* 반응형 */
   @media (max-width:840px){
-    .settings-account section > article > div > div{ grid-template-columns:1fr; }
-    .settings-account section > article > div > div > div:first-child{ line-height:1; margin-bottom:4px; }
+    .settings-account section > article >form > div > div{ grid-template-columns:1fr; }
+    .settings-account section > article >form > div > div > div:first-child{ line-height:1; margin-bottom:4px; }
   }
   </style>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+  function btnClick() {
+	  $("#form").submit();
+  }
+  $(function() {
+  		$("#form").submit(function(e) {
+  			if($("#newPassword1").val()!=$("#newPassword2").val()) {
+  				alert("새 비밀번호와 비밀번호 확인이 같지 않습니다.")
+  				e.preventDefault();
+  			}
+  		})
+  	})
+  </script>
 </head>
 
 <body class="settings-account">
@@ -282,53 +296,41 @@
 
       <article>
         <h3>계정 설정</h3>
-
+          <form action="${contextPath}/member/mypage/settingAccount" method="POST" id="form">
+		
         <div>
           <div>
             <div>로그인 이메일</div>
             <div>
-              <div>jisoo.kim@email.com</div>
+              <div>${user.email }</div>
               <div>이메일 변경이 필요하면 고객센터에 문의해주세요.</div>
             </div>
           </div>
+          
 
           <div>
             <div>현재 비밀번호</div>
-            <div><input type="password" placeholder="********" aria-label="현재 비밀번호"></div>
+            <div><input type="password" placeholder="********" aria-label="현재 비밀번호" name="curPassword"></div>
           </div>
 
           <div>
             <div>새 비밀번호</div>
-            <div><input type="password" placeholder="8자 이상, 영문/숫자/특수문자 2종 이상" aria-label="새 비밀번호"></div>
+            <div><input type="password" placeholder="8자 이상, 영문/숫자/특수문자 2종 이상" aria-label="새 비밀번호" name="newPassword" id="newPassword1"></div>
           </div>
 
           <div>
             <div>새 비밀번호 확인</div>
-            <div><input type="password" placeholder="다시 입력" aria-label="새 비밀번호 확인"></div>
+            <div><input type="password" placeholder="다시 입력" aria-label="새 비밀번호 확인" id="newPassword2"></div>
           </div>
 
           <div>
-            <button type="button">비밀번호 변경</button>
+            <button type="button" onclick="btnClick()">비밀번호 변경</button>
+            
           </div>
-
           <hr>
 
-          <!-- 마케팅 수신 동의 -->
-          <div>
-            <div>마케팅 수신 동의</div>
-            <div>
-              <div>
-                <span>이메일 수신</span>
-                <span><input type="checkbox" checked aria-label="이메일 수신 동의"></span>
-              </div>
-              <div>
-                <span>문자 수신</span>
-                <span><input type="checkbox" aria-label="문자 수신 동의"></span>
-              </div>
-            </div>
-          </div>
-          <!-- /마케팅 수신 동의 -->
-        </div>
+         </div>
+		  </form>
       </article>
     </section>
   </div>

@@ -21,7 +21,7 @@ public class MemberDto {
 
     private String address;
 
-    private String postalCode;
+    private String detailAddress;
 
     private String accountStatus;
 
@@ -129,15 +129,15 @@ public class MemberDto {
         this.address = address == null ? null : address.trim();
     }
 
-    public String getPostalCode() {
-        return postalCode;
-    }
+    public String getDetailAddress() {
+		return detailAddress;
+	}
 
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode == null ? null : postalCode.trim();
-    }
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
+	}
 
-    public String getAccountStatus() {
+	public String getAccountStatus() {
         return accountStatus;
     }
 
@@ -304,4 +304,20 @@ public class MemberDto {
     public void setSanctionReason(String sanctionReason) {
         this.sanctionReason = sanctionReason == null ? null : sanctionReason.trim();
     }
+
+	@Override
+	public String toString() {
+		return "MemberDto [id=" + id + ", username=" + username + ", email=" + email + ", passwordHash=" + passwordHash
+				+ ", phoneNumber=" + phoneNumber + ", fullName=" + fullName + ", birthDate=" + birthDate + ", address="
+				+ address + ", detailAddress=" + detailAddress + ", accountStatus=" + accountStatus + ", userType="
+				+ userType + ", emailVerified=" + emailVerified + ", phoneVerified=" + phoneVerified
+				+ ", hasExperience=" + hasExperience + ", emailVerificationToken=" + emailVerificationToken
+				+ ", emailTokenExpiresAt=" + emailTokenExpiresAt + ", notifyAnnouncement=" + notifyAnnouncement
+				+ ", notifyAdoption=" + notifyAdoption + ", notifyFollowedShelter=" + notifyFollowedShelter
+				+ ", notifyNewDevice=" + notifyNewDevice + ", passwordResetToken=" + passwordResetToken
+				+ ", passwordTokenExpiresAt=" + passwordTokenExpiresAt + ", nickname=" + nickname + ", profileImageUrl="
+				+ profileImageUrl + ", volunteerHoursTotal=" + volunteerHoursTotal + ", donationsTotal="
+				+ donationsTotal + ", shelterId=" + shelterId + ", shelterManagerRole=" + shelterManagerRole + ", bio="
+				+ bio + ", sanctionReason=" + sanctionReason + "]";
+	}
 }

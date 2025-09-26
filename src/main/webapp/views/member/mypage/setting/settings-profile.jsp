@@ -1,7 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<c:set var="contextPath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -124,7 +124,7 @@
   }
 
   /* 상세 카드 패널 */
-  .settings-profile section > article{
+  .settings-profile section > article {
     background:var(--surface);
     border:1px solid var(--border);
     border-radius:16px;
@@ -133,18 +133,18 @@
   }
 
   /* 패널 제목 */
-  .settings-profile section > article > h3{
+  .settings-profile section > article >  form >h3{
     margin:0 0 16px 0;
     font-size:16px; font-weight:800; color:var(--text);
   }
 
   /* 폼 영역 래퍼 */
-  .settings-profile section > article > div{
+  .settings-profile section > article  > form> div{
     display:flex; flex-direction:column; gap:18px;
   }
 
   /* 행 공통: 좌측 라벨/타이틀, 우측 컨트롤 */
-  .settings-profile section > article > div > div{
+  .settings-profile section > article  > form> div > div{
     display:grid;
     grid-template-columns:160px 1fr;
     align-items:start;
@@ -152,38 +152,38 @@
   }
 
   /* 라벨(좌측) */
-  .settings-profile section > article > div > div > div:first-child{
+  .settings-profile section > article  > form> div > div > div:first-child{
     color:#7A746E; font-weight:700; font-size:14px; line-height:36px;
   }
 
   /* 인풋/텍스트/버튼 쪽(우측) 공통 타이포 */
-  .settings-profile section > article > div > div > div:last-child{
+  .settings-profile section > article  > form> div > div > div:last-child{
     color:var(--text); font-size:15px;
   }
 
   /* ─ 프로필 영역(첫 행) ─ */
-  .settings-profile section > article > div > div:first-child > div:last-child{
+  .settings-profile section > article  > form> div > div:first-child > div:last-child{
     display:flex; align-items:center; gap:14px;
   }
-  .settings-profile section > article > div > div:first-child > div:last-child > div:first-child{
+  .settings-profile section > article  > form> div > div:first-child > div:last-child > div:first-child{
     /* 원형 아바타: '김' 이니셜 */
     width:56px; height:56px; border-radius:50%;
     display:flex; align-items:center; justify-content:center;
     background:#FFF3E1; color:#6F553D; font-weight:800;
     border:1px solid #F2E3CF;
   }
-  .settings-profile section > article > div > div:first-child > div:last-child > div:last-child strong{
+  .settings-profile section > article  > form> div > div:first-child > div:last-child > div:last-child strong{
     font-size:16px;
   }
-  .settings-profile section > article > div > div:first-child > div:last-child button{
+  .settings-profile section > article  > form> div > div:first-child > div:last-child button{
     height:34px; padding:0 14px; margin-left:10px;
     border:1px solid var(--border); border-radius:10px; background:#fff; cursor:pointer;
     font-weight:700; font-size:13.5px; color:#4B4B4B;
   }
-  .settings-profile section > article > div > div:first-child > div:last-child button::before{
+  .settings-profile section > article  > form> div > div:first-child > div:last-child button::before{
     content:"📷"; margin-right:6px;
   }
-  .settings-profile section > article > div > div:first-child > div:last-child button:hover{
+  .settings-profile section > article  > form> div > div:first-child > div:last-child button:hover{
     background:rgba(0,0,0,.03);
   }
 
@@ -208,38 +208,50 @@
   }
 
   /* 지역(주소) 행: 두 입력 세로 간격 */
-  .settings-profile section > article > div > div:nth-last-child(2) > div:last-child{
+  .settings-profile section > article  > form> div > div:nth-last-child(2) > div:last-child{
     display:flex; flex-direction:column; gap:8px;
   }
 
   /* 저장 버튼 행 */
-  .settings-profile section > article > div > div:last-child{
+  .settings-profile section > article  > form> div > div:last-child{
     grid-template-columns:160px auto; align-items:center;
   }
-  .settings-profile section > article > div > div:last-child > button{
+  .settings-profile section > article  > form> div > div:last-child > button{
     justify-self:start;
     height:38px; padding:0 18px;
     border:none; border-radius:10px; cursor:pointer;
     background:var(--brand-strong); color:#fff; font-weight:800;
     box-shadow:0 4px 12px rgba(0,0,0,.12);
   }
-  .settings-profile section > article > div > div:last-child > button:hover{
+  .settings-profile section > article  > form> div > div:last-child > button:hover{
     filter: brightness(1.05);
   }
 
   /* 반응형 */
   @media (max-width:840px){
-    .settings-profile section > article > div > div{
+    .settings-profile section > article  > form> div > div{
       grid-template-columns:1fr;
     }
-    .settings-profile section > article > div > div > div:first-child{
+    .settings-profile section > article  > form> div > div > div:first-child{
       line-height:1; margin-bottom:4px;
     }
-    .settings-profile section > article > div > div:last-child > button{
+    .settings-profile section > article  > form> div > div:last-child > button{
       justify-self:stretch; width:100%;
     }
   }
   </style>
+<script>
+	function readURL(input) {
+		if(input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				document.getElementById('preview').src = e.target.result;
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+	
+</script>  
 </head>
 
 <body class="settings-profile">
@@ -285,46 +297,64 @@
 
       <article>
         <h3>프로필 설정</h3>
-
-        <div>
+        <form action="${contextPath}/member/mypage/settingProfile" method="POST" enctype="multipart/form-data" id="form">
+        	<input type="hidden" value="${user.username}" name="username">
+         <div>
           <div>
             <div>프로필</div>
             <div>
-              <div aria-hidden="true">김</div>
+              <div aria-hidden="true">
+				<c:choose>
+					<c:when test="${user.profileImageUrl eq null }">
+						<img src="${contextPath}/image/default.jpg" 
+							width="100px" id="preview" onclick="document.getElementById('file').click();">
+					</c:when>
+					<c:otherwise>
+						<img src="${contextPath}/imageView?filename=${user.profileImageUrl }" 
+							width="100px" id="preview" onclick="document.getElementById('file').click();">
+					</c:otherwise>
+				</c:choose>
+				<input type="file" name="file" id="file" style="display:none" onchange="readURL(this);">              
+              </div>
               <div>
-                <strong>김지수</strong><br>
-                <button type="button">프로필 이미지 변경</button>
+                <strong>${user.username }</strong><br>
               </div>
             </div>
           </div>
 
           <div>
+            <div>이름</div>
+            <div><input type="text" value="${user.fullName }" name="fullName"></div>
+          </div>
+
+          <div>
             <div>닉네임</div>
-            <div><input type="text" placeholder="닉네임" value="김지수" aria-label="닉네임"></div>
+            <div><input type="text" value="${user.nickname }" name="nickname"></div>
           </div>
 
           <div>
             <div>연락처</div>
-            <div><input type="text" placeholder="010-1234-5678" value="010-1234-5678" aria-label="연락처"></div>
+            <div><input type="text" value="${user.phoneNumber }" name="phoneNumber"></div>
           </div>
 
           <div>
             <div>한줄소개</div>
-            <div><textarea rows="3" placeholder="소개를 입력하세요" aria-label="한줄소개">동물을 사랑하는 마음으로 보호소 봉사와 후원에 참여하고 있습니다.</textarea></div>
+            <div><textarea rows="3" name="bio">${user.bio }</textarea></div>
           </div>
 
           <div>
             <div>지역</div>
             <div>
-              <input type="text" placeholder="서울시 강남구" aria-label="시/군/구">
-              <input type="text" placeholder="상세 주소를 입력하세요" aria-label="상세주소">
+              <input type="text" value="${user.address }" name="address">
+              <input type="text" value="${user.detailAddress }" name="detailAddress">
             </div>
           </div>
 
           <div>
-            <button type="button">저장하기</button>
+            <button type="button" onclick="document.getElementById('form').submit()">저장하기</button>
           </div>
         </div>
+        </form>
       </article>
     </section>
   </div>
