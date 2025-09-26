@@ -1,0 +1,594 @@
+:root{
+  /* palette */
+  --bg:#F9F9F9; --ink:#000000; --paper:#FFFFFF;
+  --panel:#FFF8EA; --line:#F1DEC9;
+  --muted:#777777; --muted-2:#666666;
+  --tan:#A4907C; --brown:#8D7B68; --brand:#3C2A21;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.container{max-width:1120px;margin:0 auto;padding:24px}
+
+/* layout */
+.wrap{display:grid;grid-template-columns:260px 1fr;gap:24px}
+.sidebar{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px}
+.side-title{padding:10px 12px;color:var(--muted-2)}
+.side-nav{list-style:none;margin:0;padding:0}
+.side-nav li+li{margin-top:4px}
+.side-nav a{display:flex;align-items:center;gap:10px;padding:12px;border-radius:12px;color:var(--ink)}
+.side-nav a[aria-current="page"]{background:var(--panel);border:1px solid var(--line)}
+.side-nav .pill{margin-left:auto}
+
+/* blocks & controls */
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px}
+.pagebar{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.pagebar h1{margin:0;margin-right:auto}
+.btn-group{display:flex;gap:8px;margin-left:auto}
+.tools{display:flex;gap:8px;margin-left:auto}
+.input,select{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--paper)}
+.btn{border:1px solid var(--line);background:var(--paper);border-radius:12px;padding:8px 12px;cursor:pointer}
+.btn:hover{background:var(--panel)}
+.btn-primary{background:var(--brand);color:var(--paper);border-color:var(--brand)}
+.btn-danger{background:var(--paper);color:var(--brown);border-color:var(--brown)}
+.btn-inline{display:inline-flex;align-items:center;gap:6px}
+.pill{display:inline-flex;align-items:center;padding:2px 10px;border:1px solid var(--line);
+  border-radius:999px;background:var(--panel);color:var(--muted-2);font-size:12px}
+
+/* tiles (대시보드 카드) */
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.tile{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px}
+.tile h4{margin:0 0 8px 0;color:var(--muted-2);font-weight:600}
+.kpi{font-size:24px;font-weight:800;margin:4px 0}
+.more{display:inline-flex;align-items:center;gap:6px;color:var(--muted)}
+
+/* list rows */
+.list{display:flex;flex-direction:column;gap:12px}
+.row{display:flex;align-items:center;gap:16px;padding:12px;border:1px solid var(--line);
+  background:var(--paper);border-radius:14px}
+.row.unread{border-left:4px solid var(--brand);background:linear-gradient(90deg, rgba(241,222,201,.33), transparent)}
+.thumb{width:64px;height:64px;border-radius:12px;border:1px solid var(--line);background:#FFF8EA;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.title{margin:0;font-weight:700}
+.meta{color:var(--muted);font-size:13px}
+.actions{margin-left:auto;display:flex;gap:8px}
+.ic{width:16px;height:16px;flex-shrink:0}
+
+/* tabs */
+.tabs{display:flex;gap:8px}
+.tab{padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:var(--paper)}
+.tab[aria-current="page"]{background:var(--panel)}
+
+/* table-ish head (for histories) */
+.head{display:grid;grid-template-columns:1fr 140px 120px 100px;gap:12px;padding:10px 12px;
+  background:var(--panel);border:1px solid var(--line);border-radius:12px;color:var(--muted-2);font-weight:600}
+.row.grid{display:grid;grid-template-columns:1fr 140px 120px 100px}
+
+/* helpers */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mt16{margin-top:16px}
+
+/* ===== Notifications ===== */
+/* 멀티 선택 모드 */
+#multi-select-mode:checked ~ main .select-cb + .select-label {
+  display: block;
+}
+
+#multi-select-mode:checked ~ main .btn-more {
+  display: none;
+}
+
+.select-label {
+  display: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--line);
+  border-radius: 4px;
+  background: var(--paper);
+  cursor: pointer;
+  position: relative;
+}
+
+.select-cb:checked + .select-label {
+  background: var(--brand);
+  border-color: var(--brand);
+}
+
+.select-cb:checked + .select-label::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--paper);
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* 컨텍스트 메뉴 */
+.menu-toggle {
+  display: none;
+}
+
+.context-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 1000;
+  display: none;
+  min-width: 160px;
+}
+
+.menu-toggle:checked + .btn-more + .context-menu {
+  display: block;
+}
+
+.menu-item {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink);
+  text-decoration: none;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.menu-item:hover {
+  background: var(--panel);
+}
+
+.menu-item.danger {
+  color: var(--brown);
+}
+
+/* 읽음 상태 토글 */
+.read-toggle:checked ~ .row-link {
+  opacity: 0.6;
+}
+
+.read-toggle:checked ~ .row-link .title {
+  text-decoration: line-through;
+}
+
+/* 삭제 다이얼로그 */
+.delete-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-toggle:checked ~ .delete-dialog {
+  display: flex;
+}
+
+.dialog-content {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  max-width: 300px;
+}
+
+.dialog-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  justify-content: center;
+}
+
+/* 멀티 선택 삭제 버튼 */
+#multi-select-mode:checked ~ main .tools::after {
+  content: "삭제";
+  display: inline-block;
+  padding: 8px 12px;
+  background: var(--brown);
+  color: var(--paper);
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+
+/* ===== Settings (tabs, forms, toggles) ===== */
+/* ===== Settings tabs (full-width, equal items) ===== */
+/* 중복된 .pagebar 스타일 제거됨 */
+
+.seg{
+  display:flex; align-items:center;
+  gap:8px;
+  width:100%;                 /* 전체 폭 */
+  padding:6px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:14px;
+}
+.seg a{
+  flex:1;                     /* 균등 너비 */
+  text-align:center;
+  padding:10px 0;
+  border-radius:10px;
+  color:var(--ink);
+  text-decoration:none;
+}
+.seg a[aria-current="page"]{
+  background:var(--paper);    /* 선택된 탭만 하얀 알약 */
+  border:1px solid var(--line);
+  box-shadow:0 1px 2px rgba(0,0,0,.04);
+}
+
+
+
+
+.settings-panel{margin-top:12px}
+.formlist{display:flex;flex-direction:column;gap:12px}
+.formrow{display:grid;grid-template-columns:160px 1fr;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.formrow:last-child{border-bottom:0}
+.note{color:var(--muted);font-size:13px}
+
+.avatar{width:56px;height:56px;border-radius:999px;background:var(--panel);border:1px solid var(--line);
+  display:grid;place-items:center;font-weight:800;color:var(--brown)}
+
+/* Toggle */
+.switch{position:relative;width:44px;height:24px}
+.switch input{appearance:none;width:44px;height:24px;border-radius:999px;background:#ddd;outline:0;transition:.2s;border:1px solid var(--line)}
+.switch input:checked{background:var(--tan)}
+.switch input::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;background:var(--paper);border-radius:50%;transition:.2s;box-shadow:0 1px 2px rgba(0,0,0,.1)}
+.switch input:checked::after{left:23px}
+
+/* plain rows (연동 목록) */
+.list-plain .row{justify-content:space-between}
+
+/* Danger box (탈퇴) */
+.danger{background:#ffecec;border:1px solid #f5a8a8;color:#8d4a4a;border-radius:12px;padding:12px}
+
+
+
+/* === Dashboard only === */
+.layout{display:grid;grid-template-columns:260px 1fr;gap:24px}
+
+/* sidebar */
+.sidebar{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px}
+.side-title{padding:10px 12px;color:var(--muted-2)}
+.side-nav{list-style:none;margin:0;padding:0}
+.side-nav a{
+  display:flex;justify-content:space-between;align-items:center;gap:8px;
+  padding:12px;border-radius:10px;color:var(--ink);text-decoration:none
+}
+.side-nav a:hover{background:var(--panel)}
+.side-nav a[aria-current="page"]{background:var(--panel);border:1px solid var(--line)}
+.pill{min-width:28px;height:22px;display:grid;place-items:center;
+  padding:0 8px;border-radius:999px;background:var(--panel);border:1px solid var(--line);
+  color:var(--muted-2);font-size:12px}
+
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tile{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px;min-height:120px}
+.tile h4{margin:0 0 6px 0;color:var(--muted-2);font-weight:600}
+.kpi-row{display:flex;align-items:center;justify-content:space-between}
+.kpi{font-size:28px;font-weight:800}
+.ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;
+  background:var(--panel);border:1px solid var(--line);color:var(--brown)}
+.more{color:var(--muted);font-size:14px}
+
+/* recent box */
+.mt16{margin-top:16px}
+.list .row{padding:12px;border-top:1px solid var(--line);display:flex;align-items:center;gap:12px}
+.list .row:first-child{border-top:0}
+.list .meta{margin-left:auto;color:var(--muted)}
+/* 탭 바(세그먼트)는 settings에서 쓰던 .seg 재사용 */
+
+
+
+/* layout: 좌측 사이드바 + 우측 내용  */
+.layout{display:grid;grid-template-columns:260px 1fr;gap:24px}
+
+/* 제목 톤 다운(예시 스샷처럼) */
+.pagebar h1{margin:0;font-size:24px}
+.card h3{margin:0 0 12px 0;color:var(--muted-2);font-size:18px}
+
+/* 계정 > 마케팅 동의: 텍스트-토글 좌우 정렬 */
+.stack{display:flex;flex-direction:column;gap:12px}
+.kv{display:flex;align-items:center;justify-content:space-between}
+
+
+
+
+
+/* Social connections list */
+.sicon{
+  width:40px;height:40px;border-radius:10px;
+  border:1px solid var(--line);background:var(--paper);
+  overflow:hidden;display:grid;place-items:center;
+}
+.sicon img{width:100%;height:100%;object-fit:cover}
+
+/* (이미지가 없을 때 글자 fallback 용도, 선택사항) */
+.sicon.fallback{font-weight:700;color:#fff}
+.sicon.kakao{background:#FEE500}
+.sicon.naver{background:#03C75A}
+.sicon.google{background:#4285F4}
+
+
+
+/* --- Security: 최근 로그인 기록 행 --- */
+.session{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 14px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:12px;
+}
+.session + .session{ margin-top:8px; }       /* 행 간격 */
+.session .title{ font-weight:700; }          /* 제목 굵게 */
+.session .meta{ color:var(--muted); }        /* 서브 정보 톤다운 */
+.session .at{ color:var(--muted-2); }        /* 우측 시간 톤다운 */
+
+/* (선택) 로그아웃 버튼을 붉은 외곽선 버튼으로 */
+.btn-danger-out{
+  background:var(--paper);
+  border:1px solid #f19999;
+  color:#b33;
+}
+.btn-danger-out:hover{ background:#fff1f1; }
+
+
+/* settings: 한 행을 1열로(제목 위, 내용 아래) */
+.formrow--stack{ grid-template-columns: 1fr; align-items: initial; }
+.formrow--stack > :first-child{ font-weight:600; color:var(--muted-2); margin-bottom:8px; }
+.formrow--stack .session + .session{ margin-top:8px; } /* 행 간격 */
+
+
+
+/* === Notifications page overrides === */
+.notifications .pagebar{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.notifications .pagebar h1{margin:0;margin-right:auto}
+
+/* 버튼 두 개를 한 덩어리로 붙이기 */
+.notifications .btn-group{display:flex}
+.notifications .btn-group .btn{border-radius:10px 0 0 10px}
+.notifications .btn-group .btn + .btn{
+  border-left:0;
+  border-radius:0 10px 10px 0;
+}
+
+/* 아이콘 정렬 */
+.notifications .ic{vertical-align:-2px;margin-right:6px}
+
+/* 행 UX 개선 */
+.notifications .row-link:hover{background:var(--panel);box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.notifications .row.unread .title::before{
+  content:"";display:inline-block;width:8px;height:8px;margin-right:6px;
+  background:var(--brand);border-radius:50%;
+}
+
+/* 오른쪽 정렬: pill → 시간 */
+.notifications .row .pill{margin-left:auto}
+.notifications .row .time{white-space:nowrap;margin-left:8px}
+
+/* 모바일(사이드바 감추고 1열) */
+@media (max-width: 960px){
+  .wrap{grid-template-columns:1fr}
+  .sidebar{display:none}
+  .notifications .row{align-items:flex-start}
+  .notifications .row .pill{margin-left:0}
+  .notifications .row .time{margin-left:0}
+}
+
+
+
+
+
+
+/* === volunteer 페이지 상단바: 반드시 한 줄 === */
+.container.volunteer .pagebar{
+  display:flex !important;
+  flex-direction:row !important;  /* 기존 .pagebar{flex-direction:column} 덮어씀 */
+  align-items:center !important;
+  gap:12px;
+  margin-bottom:12px;
+  flex-wrap:nowrap;                /* 줄바꿈 금지 */
+}
+.container.volunteer .pagebar h1{
+  margin:0 !important;
+  margin-right:auto !important;    /* 오른쪽으로 도구 묶음 밀기 */
+  line-height:1.2;
+}
+
+/* 오른쪽 도구 묶음(검색 + 필터) */
+.container.volunteer .pagebar .tools{
+  display:flex !important;
+  align-items:center !important;
+  gap:8px;
+  white-space:nowrap;              /* 버튼/텍스트 줄바꿈 방지 */
+}
+.container.volunteer .pagebar .tools .input{
+  width:260px;                     /* 필요시 조절 */
+  min-width:200px;
+}
+
+/* 버튼 내부 아이콘과 텍스트를 가로로 강제 */
+.container.volunteer .pagebar .tools .btn{
+  display:inline-flex !important;
+  flex-direction:row !important;
+  align-items:center !important;
+  gap:6px;
+  padding:8px 12px;
+}
+.container.volunteer .pagebar .tools .btn .ic{
+  margin-right:2px;
+  vertical-align:-2px;
+}
+
+/* 화면이 많이 좁아질 때만(선택) 줄바꿈 허용 */
+@media (max-width: 680px){
+  .container.volunteer .pagebar{flex-wrap:wrap}
+  .container.volunteer .pagebar .tools{width:100%; justify-content:flex-end}
+}
+
+
+
+/* 봉사 페이지 상단바 버튼 안의 아이콘을 '인라인 16px'로 강제 */
+.container.volunteer .pagebar .tools .btn{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:8px 12px;
+}
+.container.volunteer .pagebar .tools .btn .ic{
+  width:16px !important; height:16px !important;
+  display:inline-block !important;
+  background:transparent !important;
+  border:0 !important; border-radius:0 !important;
+  box-shadow:none !important; padding:0 !important;
+  margin-right:6px; vertical-align:-2px;
+  place-items:initial !important;   /* grid 정렬 무효화 */
+}
+
+
+/* ===== 알림 상세 페이지 (JS 없이 깔끔한 카드) ===== */
+.notice-detail .card.detail{padding:16px 16px 14px}
+
+.notice-detail .detail-head{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px; padding-bottom:10px; margin-bottom:12px;
+  border-bottom:1px solid var(--line);
+}
+.notice-detail .detail-head .left{
+  display:flex; align-items:center; gap:8px; min-width:0;
+}
+.notice-detail .detail-title{
+  margin:0; font-size:18px; font-weight:800; line-height:1.3;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.notice-detail .detail-body{display:flex; flex-direction:column; gap:8px}
+.notice-detail .detail-body p{margin:0; line-height:1.7}
+.notice-detail .more{display:inline-flex; align-items:center; gap:6px; color:var(--muted-2)}
+.notice-detail .more:hover{color:var(--ink); text-decoration:underline}
+
+/* 버튼을 우측 정렬 */
+.notice-detail .actions.right{display:flex; gap:8px; justify-content:flex-end; margin-top:10px}
+
+/* (선택) 상단바 가로 정렬 통일 */
+.notice-detail .pagebar{display:flex; align-items:center; gap:12px; margin-bottom:12px}
+.notice-detail .pagebar h1{margin:0}
+
+/* 모바일 대응 */
+@media (max-width: 720px){
+  .notice-detail .detail-head{flex-direction:column; align-items:flex-start; gap:6px}
+  .notice-detail .detail-title{white-space:normal}
+}
+
+
+
+/* ==== Notifications 레이아웃 강제 보정 (맨 마지막에 붙여넣기) ==== */
+
+/* 행은 가로 플렉스 + 링크가 내용 영역 전체를 차지 */
+.container.notifications .list .row{
+  display:flex !important;
+  align-items:center !important;
+  gap:12px !important;
+}
+
+/* 링크 본체를 가로 플렉스로 확장 */
+.container.notifications .list .row > .row-link{
+  display:flex !important;
+  align-items:center !important;
+  gap:12px !important;
+  flex:1 1 auto !important;   /* 핵심: 내용이 가로로 퍼짐 */
+  min-width:0 !important;     /* 긴 텍스트가 줄 바꿈/말줄임 가능 */
+  color:inherit !important;
+  text-decoration:none !important;
+}
+
+/* 썸네일은 고정폭 */
+.container.notifications .list .row > .row-link > .thumb{
+  flex:0 0 64px !important;
+}
+
+/* (본문 래퍼가 클래스가 없더라도) 첫 번째 내용 DIV가 줄 바꿈 기준을 가짐 */
+.container.notifications .list .row > .row-link > div{
+  min-width:0 !important;
+}
+
+/* 제목/서브텍스트 줄바꿈 방식 */
+.container.notifications .list .row .title{
+  margin:0 !important;
+  font-weight:700 !important;
+  line-height:1.35 !important;
+  white-space:normal !important;
+  word-break:keep-all !important;   /* 한글 글자단위 줄바꿈 방지 */
+}
+
+/* 공용 CSS의 .list .meta { margin-left:auto } 무력화 (본문 안의 meta만) */
+.container.notifications .list .row .row-link .meta{
+  margin-left:0 !important;
+  color:var(--muted) !important;
+  font-size:13px !important;
+}
+
+/* pill은 링크 내부 우측으로 밀기, 시간은 한 줄 유지 */
+.container.notifications .list .row .pill{
+  margin-left:auto !important;
+}
+.container.notifications .list .row .time{
+  white-space:nowrap !important;
+  margin-left:8px !important;
+}
+
+/* 액션 버튼 묶음은 고정폭으로 행 끝에 */
+.container.notifications .list .row .actions{
+  margin-left:12px !important;     /* 공용의 margin-left:auto를 덮어씀 */
+  display:flex !important;
+  gap:8px !important;
+  flex:0 0 auto !important;
+}
+
+/* 호버 효과(선택) */
+.container.notifications .row-link:hover{
+  background:var(--panel) !important;
+  box-shadow:0 1px 2px rgba(0,0,0,.04) !important;
+  border-radius:12px !important;
+  padding:4px 6px !important;
+}
+
+/* ===== CSS-only 읽음/삭제 토글 (그대로 유지) ===== */
+.cb{ position:absolute; left:-9999px; }
+#mark-all{ position:absolute; left:-9999px; }
+
+/* 개별 '읽음' */
+.container.notifications .list .row:has(.cb-read:checked){
+  opacity:.65; background:var(--paper);
+}
+.container.notifications .list .row.unread:has(.cb-read:checked){
+  border-left:1px solid var(--line); background:var(--paper);
+}
+.container.notifications .list .row:has(.cb-read:checked) .title::before{ content:none; }
+
+/* 전역 '모두 읽음' */
+#mark-all:checked ~ main.notifications .list .row{
+  opacity:.65; background:var(--paper);
+}
+#mark-all:checked ~ main.notifications .list .row.unread{ border-left:1px solid var(--line); }
+#mark-all:checked ~ main.notifications .list .row .title::before{ content:none; }
+
+/* 개별 '삭제' */
+.container.notifications .list .row:has(.cb-delete:checked){ display:none; }

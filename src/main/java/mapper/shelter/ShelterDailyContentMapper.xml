@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ShelterDailyContentMapper">
+  <resultMap id="BaseResultMap" type="dto.ShelterDailyContentDto">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="shelter_id" jdbcType="INTEGER" property="shelterId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="thumbnail_url" jdbcType="VARCHAR" property="thumbnailUrl" />
+    <result column="view_count" jdbcType="INTEGER" property="viewCount" />
+    <result column="like_count" jdbcType="INTEGER" property="likeCount" />
+    <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
+    <result column="published_at" jdbcType="TIMESTAMP" property="publishedAt" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="created_by" jdbcType="INTEGER" property="createdBy" />
+    <result column="is_deleted" jdbcType="BOOLEAN" property="isDeleted" />
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from shelter_daily_contents
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="dto.ShelterDailyContentDto">
+    insert into shelter_daily_contents (id, shelter_id, title, 
+      thumbnail_url, view_count, like_count, 
+      comment_count, published_at, created_at, 
+      created_by, is_deleted, description
+      )
+    values (#{id,jdbcType=INTEGER}, #{shelterId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{thumbnailUrl,jdbcType=VARCHAR}, #{viewCount,jdbcType=INTEGER}, #{likeCount,jdbcType=INTEGER}, 
+      #{commentCount,jdbcType=INTEGER}, #{publishedAt,jdbcType=TIMESTAMP}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{createdBy,jdbcType=INTEGER}, #{isDeleted,jdbcType=BOOLEAN}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="dto.ShelterDailyContentDto">
+    update shelter_daily_contents
+    set shelter_id = #{shelterId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      thumbnail_url = #{thumbnailUrl,jdbcType=VARCHAR},
+      view_count = #{viewCount,jdbcType=INTEGER},
+      like_count = #{likeCount,jdbcType=INTEGER},
+      comment_count = #{commentCount,jdbcType=INTEGER},
+      published_at = #{publishedAt,jdbcType=TIMESTAMP},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      is_deleted = #{isDeleted,jdbcType=BOOLEAN},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, shelter_id, title, thumbnail_url, view_count, like_count, comment_count, 
+    published_at, created_at, created_by, is_deleted, description
+    from shelter_daily_contents
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, shelter_id, title, thumbnail_url, view_count, like_count, comment_count, 
+    published_at, created_at, created_by, is_deleted, description
+    from shelter_daily_contents
+  </select>
+</mapper>

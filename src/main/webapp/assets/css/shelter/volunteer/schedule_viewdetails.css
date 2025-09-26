@@ -1,0 +1,115 @@
+ :root{
+    --bg:#f6f7fb;
+    --card:#ffffff;
+    --text:#111827;
+    --muted:#6b7280;
+    --border:#e5e7ef;
+    --line:#eef0f4;
+    --primary:#2563eb;
+    --danger:#ef4444;
+    --success:#22c55e;
+    --warn:#f59e0b;
+    --chip:#f3f4f6;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+    line-height:1.6;
+  }
+  .container{max-width:1100px;margin:28px auto;padding:0 16px}
+  /* Header */
+  .page-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .back{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:36px;height:36px;border-radius:10px;background:var(--card);
+    border:1px solid var(--border);cursor:pointer
+  }
+  .page-title h1{margin:0;font-size:28px;font-weight:800}
+  .page-title .sub{color:var(--muted);font-size:14px;margin-top:2px}
+  .head-actions{margin-left:auto;display:flex;gap:8px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    border:1px solid var(--border);
+    background:var(--card);color:var(--text);
+    padding:8px 12px;border-radius:10px;font-weight:600;cursor:pointer
+  }
+  .btn:hover{background:#fafafa}
+  .btn-primary{background:var(--primary);border-color:var(--primary);color:#fff}
+  .btn-danger{background:#fff;border-color:#f4c7c7;color:#b91c1c}
+  .btn-danger:hover{background:#fff5f5}
+  .btn svg{width:18px;height:18px}
+  /* Card */
+  .card{background:var(--card);border:1px solid var(--border);border-radius:14px}
+  .card + .card{margin-top:16px}
+  .card-body{padding:18px}
+  .card-head{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center}
+  .card-head h3{margin:0;font-size:16px;font-weight:800}
+  /* chips / badges */
+  .chips{margin-left:auto;display:flex;gap:8px}
+  .chip{
+    background:var(--chip);color:#374151;border:1px solid var(--border);
+    padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700
+  }
+  .chip.success{background:#ecfdf5;border-color:#bbf7d0;color:#047857}
+  .chip.warn{background:#fff7ed;border-color:#fed7aa;color:#b45309}
+  .chip.gray{background:#f3f4f6}
+  /* Info grid */
+  .info{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  @media (max-width:840px){ .info{grid-template-columns:1fr} }
+  .section h4{margin:0 0 10px 0;font-size:14px;color:#111827}
+  .dl{
+    display:grid;
+    grid-template-columns:120px 1fr; /* 라벨 고정폭 */
+    row-gap:10px; column-gap:18px; align-items:center;
+  }
+  .dt{
+    color:var(--muted);
+    display:inline-flex; align-items:center; gap:8px;
+    white-space:nowrap; /* 라벨 줄바꿈 방지 */
+  }
+  .dt svg{width:18px;height:18px;color:#9ca3af;flex:0 0 auto}
+  .dd{font-weight:700; line-height:1.5;}
+  .dd.subtle{font-weight:600;}
+  .dd strong{font-weight:800;}
+  .divider{height:1px;background:var(--line);margin:16px 0}
+  /* Detail text blocks */
+  .block + .block{border-top:1px solid var(--line);margin-top:16px;padding-top:16px}
+  .block h5{margin:0 0 8px 0;font-size:14px}
+  .muted{color:var(--muted)}
+  /* Recruitment status row */
+  .row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .row .grow{flex:1}
+  .stat{font-weight:800}
+  .right-note{margin-left:auto;color:var(--muted)}
+  /* Applicant list */
+  .list{display:flex;flex-direction:column}
+  .item{
+    display:flex;align-items:center;gap:12px;
+    padding:18px;border-top:1px solid var(--line);background:linear-gradient(#fff,#fff)
+  }
+  .item:first-child{border-top:0}
+  .item-main{min-width:0}
+  .name{font-weight:800}
+  .time{color:var(--muted);font-size:13px;margin-top:2px}
+  .spacer{flex:1}
+  .badge{
+    padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800;border:1px solid transparent
+  }
+  .badge.ok{background:#ecfdf5;color:#047857;border-color:#bbf7d0}
+  .badge.wait{background:#fff7ed;color:#b45309;border-color:#fed7aa}
+  .btn-outline{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:8px 10px;border-radius:10px;border:1px solid var(--border);background:#fff;font-weight:700;cursor:pointer
+  }
+  .btn-outline svg{width:16px;height:16px}
+  .list-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line)}
+  .list-head h3{margin:0;font-size:16px;font-weight:800}
+  .ghost{background:#fff;border:1px solid var(--border);font-weight:700;border-radius:10px;padding:8px 12px;cursor:pointer}
+  .ghost:hover{background:#fafafa}
+  a.tel{color:inherit;text-decoration:none}
+/* 상단 정보카드 내부 구분선 제거 + 섹션 간 여백 보정 */
+.card .section .divider{ display:none; }
+.card .section h4:not(:first-child){ margin-top:18px; }

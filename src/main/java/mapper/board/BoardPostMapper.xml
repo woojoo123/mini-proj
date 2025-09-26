@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.BoardPostMapper">
+  <resultMap id="BaseResultMap" type="dto.BoardPostDto">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="is_pinned" jdbcType="BOOLEAN" property="isPinned" />
+    <result column="is_locked" jdbcType="BOOLEAN" property="isLocked" />
+    <result column="view_count" jdbcType="INTEGER" property="viewCount" />
+    <result column="like_count" jdbcType="INTEGER" property="likeCount" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="is_deleted" jdbcType="BOOLEAN" property="isDeleted" />
+    <result column="tags" jdbcType="VARCHAR" property="tags" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from board_posts
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="dto.BoardPostDto">
+    insert into board_posts (id, category_id, member_id, 
+      title, is_pinned, is_locked, 
+      view_count, like_count, created_at, 
+      updated_at, is_deleted, tags, 
+      content)
+    values (#{id,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, 
+      #{title,jdbcType=VARCHAR}, #{isPinned,jdbcType=BOOLEAN}, #{isLocked,jdbcType=BOOLEAN}, 
+      #{viewCount,jdbcType=INTEGER}, #{likeCount,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BOOLEAN}, #{tags,jdbcType=VARCHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="dto.BoardPostDto">
+    update board_posts
+    set category_id = #{categoryId,jdbcType=INTEGER},
+      member_id = #{memberId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      is_pinned = #{isPinned,jdbcType=BOOLEAN},
+      is_locked = #{isLocked,jdbcType=BOOLEAN},
+      view_count = #{viewCount,jdbcType=INTEGER},
+      like_count = #{likeCount,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BOOLEAN},
+      tags = #{tags,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, category_id, member_id, title, is_pinned, is_locked, view_count, like_count, 
+    created_at, updated_at, is_deleted, tags, content
+    from board_posts
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, category_id, member_id, title, is_pinned, is_locked, view_count, like_count, 
+    created_at, updated_at, is_deleted, tags, content
+    from board_posts
+  </select>
+</mapper>

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색 결과 - 동반자</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background-color: #F9F9F9;
+            color: #3C2A21;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .search-header {
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(60, 42, 33, 0.1);
+        }
+
+        .search-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #3C2A21;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid #F1DEC9;
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: #FFF8EA;
+            color: #3C2A21;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #8D7B68;
+        }
+
+        .search-input::placeholder {
+            color: #777777;
+        }
+
+        .search-btn {
+            padding: 1rem 2rem;
+            background-color: #8D7B68;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background-color: #A4907C;
+        }
+
+        .search-info {
+            background-color: #FFF8EA;
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #8D7B68;
+        }
+
+        .search-query {
+            font-size: 1rem;
+            color: #3C2A21;
+            margin-bottom: 0.5rem;
+        }
+
+        .search-count {
+            font-size: 0.9rem;
+            color: #777777;
+        }
+
+        .results-container {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .result-section {
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(60, 42, 33, 0.1);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #F1DEC9;
+        }
+
+        .section-icon {
+            width: 24px;
+            height: 24px;
+            color: #8D7B68;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #3C2A21;
+        }
+
+        .section-count {
+            font-size: 0.9rem;
+            color: #777777;
+            margin-left: auto;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .result-card {
+            background-color: #FFF8EA;
+            border-radius: 8px;
+            padding: 1.25rem;
+            border: 1px solid #F1DEC9;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        .result-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(60, 42, 33, 0.15);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 150px;
+            background-color: #F1DEC9;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            color: #777777;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #3C2A21;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .card-subtitle {
+            font-size: 0.875rem;
+            color: #777777;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-description {
+            font-size: 0.875rem;
+            color: #666666;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 0.25rem 0.75rem;
+            background-color: #A4907C;
+            color: #FFFFFF;
+            font-size: 0.75rem;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        .shelter-card .card-image {
+            background-color: #8D7B68;
+            color: #FFFFFF;
+        }
+
+        .animal-card .card-image {
+            background-color: #A4907C;
+            color: #FFFFFF;
+        }
+
+        /* 게시글 목록 스타일 */
+        .post-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .post-item {
+            background-color: #FFF8EA;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #F1DEC9;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        .post-item:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(60, 42, 33, 0.15);
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .post-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #3C2A21;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .post-meta {
+            font-size: 0.875rem;
+            color: #777777;
+            white-space: nowrap;
+            margin-left: 1rem;
+        }
+
+        .post-preview {
+            font-size: 0.9rem;
+            color: #666666;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .post-author {
+            font-size: 0.875rem;
+            color: #777777;
+        }
+
+        .post-stats {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.75rem;
+            color: #A4907C;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 1rem;
+            }
+
+            .search-form {
+                flex-direction: column;
+            }
+
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+
+            .section-count {
+                margin-left: 0;
+            }
+
+            .post-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .post-meta {
+                margin-left: 0;
+            }
+
+            .post-footer {
+                flex-direction: column;
+                gap: 0.75rem;
+                align-items: flex-start;
+            }
+
+            .post-stats {
+                gap: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="main-container">
+        <!-- 검색 영역 -->
+        <section class="search-header">
+            <h1 class="search-title">통합 검색</h1>
+            <form class="search-form">
+                <input type="text" class="search-input" placeholder="보호소, 강아지, 게시글을 검색해보세요" value="골든리트리버">
+                <button type="submit" class="search-btn">검색</button>
+            </form>
+        </section>
+
+        <!-- 검색 정보 -->
+        <div class="search-info">
+            <div class="search-query">'골든리트리버' 검색 결과</div>
+            <div class="search-count">총 17개의 결과를 찾았습니다</div>
+        </div>
+
+        <!-- 검색 결과 -->
+        <div class="results-container">
+            <!-- 보호소 결과 -->
+            <section class="result-section">
+                <div class="section-header">
+                    <svg class="section-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 10 9 11 1.16-.21 2-.3 3-.46V17c0-5.5 3.5-10 8-10h.5c.3 0 .5-.2.5-.5S22.8 6 22.5 6C18.9 6 16 8.9 16 12.5V17c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V8.5L12 4.5 20 8.5V10c0 .3.2.5.5.5S21 10.3 21 10V7L12 2z"/>
+                    </svg>
+                    <h2 class="section-title">보호소</h2>
+                    <span class="section-count">3개</span>
+                </div>
+                <div class="result-grid">
+                    <div class="result-card shelter-card">
+                        <div class="card-image">🏠 보호소 이미지</div>
+                        <div class="card-title">해피독 보호소</div>
+                        <div class="card-subtitle">서울특별시 강남구</div>
+                        <div class="card-description">골든리트리버 전문 보호소로 현재 12마리의 골든리트리버가 새로운 가족을 기다리고 있습니다.</div>
+                        <div class="card-tags">
+                            <span class="tag">골든리트리버</span>
+                            <span class="tag">대형견</span>
+                        </div>
+                    </div>
+                    <div class="result-card shelter-card">
+                        <div class="card-image">🏠 보호소 이미지</div>
+                        <div class="card-title">사랑의집 보호소</div>
+                        <div class="card-subtitle">경기도 성남시</div>
+                        <div class="card-description">다양한 견종을 보호하며 특히 골든리트리버 입양 프로그램을 운영하고 있습니다.</div>
+                        <div class="card-tags">
+                            <span class="tag">다견종</span>
+                            <span class="tag">입양전문</span>
+                        </div>
+                    </div>
+                    <div class="result-card shelter-card">
+                        <div class="card-image">🏠 보호소 이미지</div>
+                        <div class="card-title">골든프렌즈 센터</div>
+                        <div class="card-subtitle">인천광역시 남동구</div>
+                        <div class="card-description">골든리트리버만을 전문으로 하는 보호소로 체계적인 관리와 교육을 제공합니다.</div>
+                        <div class="card-tags">
+                            <span class="tag">골든리트리버</span>
+                            <span class="tag">전문관리</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 강아지 결과 -->
+            <section class="result-section">
+                <div class="section-header">
+                    <svg class="section-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M4.5 12.75C5.33 12.75 6 12.08 6 11.25S5.33 9.75 4.5 9.75 3 10.42 3 11.25 3.67 12.75 4.5 12.75zM19.5 12.75C20.33 12.75 21 12.08 21 11.25S20.33 9.75 19.5 9.75 18 10.42 18 11.25 18.67 12.75 19.5 12.75zM12 15.5C8.69 15.5 6 12.81 6 9.5V8C6 5.79 7.79 4 10 4H14C16.21 4 18 5.79 18 8V9.5C18 12.81 15.31 15.5 12 15.5zM10 6C8.9 6 8 6.9 8 8V9.5C8 11.71 9.79 13.5 12 13.5S16 11.71 16 9.5V8C16 6.9 15.1 6 14 6H10z"/>
+                    </svg>
+                    <h2 class="section-title">입양 가능한 강아지</h2>
+                    <span class="section-count">8개</span>
+                </div>
+                <div class="result-grid">
+                    <div class="result-card animal-card">
+                        <div class="card-image">🐕 강아지 사진</div>
+                        <div class="card-title">골디</div>
+                        <div class="card-subtitle">골든리트리버 • 3세 • 수컷</div>
+                        <div class="card-description">온순하고 사람을 좋아하는 골디입니다. 아이들과도 잘 지내며 산책을 매우 좋아합니다.</div>
+                        <div class="card-tags">
+                            <span class="tag">중성화완료</span>
+                            <span class="tag">건강함</span>
+                        </div>
+                    </div>
+                    <div class="result-card animal-card">
+                        <div class="card-image">🐕 강아지 사진</div>
+                        <div class="card-title">해피</div>
+                        <div class="card-subtitle">골든리트리버 • 2세 • 암컷</div>
+                        <div class="card-description">활발하고 영리한 해피입니다. 기본 명령어를 잘 따르며 다른 개들과도 친화적입니다.</div>
+                        <div class="card-tags">
+                            <span class="tag">교육완료</span>
+                            <span class="tag">사회성좋음</span>
+                        </div>
+                    </div>
+                    <div class="result-card animal-card">
+                        <div class="card-image">🐕 강아지 사진</div>
+                        <div class="card-title">럭키</div>
+                        <div class="card-subtitle">골든리트리버 • 5세 • 수컷</div>
+                        <div class="card-description">차분하고 안정적인 성격의 럭키입니다. 경험이 풍부한 가족에게 적합합니다.</div>
+                        <div class="card-tags">
+                            <span class="tag">성견</span>
+                            <span class="tag">안정적</span>
+                        </div>
+                    </div>
+                    <div class="result-card animal-card">
+                        <div class="card-image">🐕 강아지 사진</div>
+                        <div class="card-title">썬</div>
+                        <div class="card-subtitle">골든리트리버 • 1세 • 암컷</div>
+                        <div class="card-description">밝고 쾌활한 성격의 썬입니다. 아직 어려서 적응력이 뛰어나며 학습능력이 좋습니다.</div>
+                        <div class="card-tags">
+                            <span class="tag">어린견</span>
+                            <span class="tag">적응력우수</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 게시글 결과 -->
+            <section class="result-section">
+                <div class="section-header">
+                    <svg class="section-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                    </svg>
+                    <h2 class="section-title">게시글</h2>
+                    <span class="section-count">6개</span>
+                </div>
+                <div class="post-list">
+                    <article class="post-item">
+                        <div class="post-header">
+                            <h3 class="post-title">골든리트리버 성공 입양 후기 - 우리 골디와 함께한 6개월</h3>
+                            <div class="post-meta">2024.03.15</div>
+                        </div>
+                        <div class="post-preview">
+                            해피독 보호소에서 골디를 입양한 지 6개월이 되었습니다. 처음에는 새로운 환경에 적응하느라 힘들어했지만 지금은 정말 행복한 나날들을 보내고 있어요. 골든리트리버는 정말 사람을 좋아하고 똑똑한 견종인 것 같습니다...
+                        </div>
+                        <div class="post-footer">
+                            <div class="post-author">김민수 • 입양 후기</div>
+                            <div class="post-stats">
+                                <span>조회 245</span>
+                                <span>댓글 12</span>
+                                <span>좋아요 18</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="post-item">
+                        <div class="post-header">
+                            <h3 class="post-title">골든리트리버 케어 팁 완벽 가이드</h3>
+                            <div class="post-meta">2024.03.12</div>
+                        </div>
+                        <div class="post-preview">
+                            골든리트리버를 키우실 때 알아두면 좋은 케어 방법들을 정리해서 공유드립니다. 대형견이다 보니 운동량이 많이 필요하고, 털 관리도 중요한데요. 특히 환절기에는 더욱 세심한 관리가 필요합니다...
+                        </div>
+                        <div class="post-footer">
+                            <div class="post-author">해피독 보호소 • 정보 공유</div>
+                            <div class="post-stats">
+                                <span>조회 892</span>
+                                <span>댓글 34</span>
+                                <span>좋아요 67</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="post-item">
+                        <div class="post-header">
+                            <h3 class="post-title">골든리트리버 훈련 노하우 - 기본 명령어부터 고급 트릭까지</h3>
+                            <div class="post-meta">2024.03.10</div>
+                        </div>
+                        <div class="post-preview">
+                            골든리트리버는 학습능력이 뛰어난 견종으로 올바른 훈련 방법을 사용하면 놀라운 결과를 얻을 수 있습니다. 오늘은 기본적인 앉아, 기다려부터 시작해서 고급 트릭까지 단계별로 알려드리겠습니다...
+                        </div>
+                        <div class="post-footer">
+                            <div class="post-author">골든프렌즈 센터 • 훈련 가이드</div>
+                            <div class="post-stats">
+                                <span>조회 1,256</span>
+                                <span>댓글 89</span>
+                                <span>좋아요 156</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="post-item">
+                        <div class="post-header">
+                            <h3 class="post-title">골든리트리버와 함께하는 가족 나들이 추천 장소</h3>
+                            <div class="post-meta">2024.03.08</div>
+                        </div>
+                        <div class="post-preview">
+                            골든리트리버와 함께 갈 수 있는 서울 근교 나들이 장소들을 소개합니다. 넓은 공간에서 마음껏 뛰어놀 수 있고, 반려견 동반이 가능한 카페와 식당 정보도 함께 정리했습니다...
+                        </div>
+                        <div class="post-footer">
+                            <div class="post-author">이영희 • 일상 공유</div>
+                            <div class="post-stats">
+                                <span>조회 432</span>
+                                <span>댓글 23</span>
+                                <span>좋아요 41</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="post-item">
+                        <div class="post-header">
+                            <h3 class="post-title">골든리트리버 건강 관리 - 주의해야 할 질병과 예방법</h3>
+                            <div class="post-meta">2024.03.05</div>
+                        </div>
+                        <div class="post-preview">
+                            골든리트리버에게 자주 발생하는 질병들과 예방 방법에 대해 알아보겠습니다. 고관절 이형성증, 심장병, 피부 알레르기 등 골든리트리버가 취약한 질병들의 초기 증상과 관리법을 정리했습니다...
+                        </div>
+                        <div class="post-footer">
+                            <div class="post-author">사랑의집 보호소 • 건강 정보</div>
+                            <div class="post-stats">
+                                <span>조회 758</span>
+                                <span>댓글 45</span>
+                                <span>좋아요 92</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="post-item">
+                        <div class="post-header">
+                            <h3 class="post-title">골든리트리버 입양 전 체크리스트 - 준비해야 할 것들</h3>
+                            <div class="post-meta">2024.03.02</div>
+                        </div>
+                        <div class="post-preview">
+                            골든리트리버 입양을 고려하고 계신가요? 대형견인 골든리트리버를 가족으로 맞이하기 전에 꼭 확인해야 할 사항들을 정리했습니다. 주거 환경, 경제적 준비, 가족 구성원의 동의 등을 점검해보세요...
+                        </div>
+                        <div class="post-footer">
+                            <div class="post-author">박준호 • 입양 가이드</div>
+                            <div class="post-stats">
+                                <span>조회 1,089</span>
+                                <span>댓글 67</span>
+                                <span>좋아요 134</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

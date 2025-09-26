@@ -1,0 +1,40 @@
+ :root{
+    --bg:#f9f9fb; --panel:#fff; --line:#e8e8ee; --muted:#6b7280; --text:#111;
+    --primary:#8D7B68; --shadow:0 2px 8px rgba(0,0,0,.05);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans KR",system-ui,Segoe UI,Roboto,Arial,sans-serif}
+  .wrap{max-width:1040px;margin:28px auto;padding:0 16px}
+  .page-head h1{margin:0 0 6px;font-size:26px}
+  .sub{margin:0 0 16px;color:var(--muted);font-size:14px}
+
+  /* counters */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:10px}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:12px}
+  .stat .label{color:var(--muted);font-size:12px}
+  .stat .num{display:flex;gap:8px;align-items:center;margin-top:6px;font-size:22px;font-weight:800}
+  .num .dot{width:28px;height:28px;border-radius:10px;background:#eef2f7;display:inline-flex;align-items:center;justify-content:center;font-size:14px}
+
+  /* toolbar */
+  .toolbar{display:flex;gap:10px;align-items:center;margin:12px 0}
+  .toolbar input,.toolbar select{height:40px;border:1px solid var(--line);border-radius:10px;padding:0 10px;background:#fff}
+  .toolbar input{flex:1}
+
+  /* list/cards */
+  .list{list-style:none;margin:0;padding:0}
+  .card{display:grid;grid-template-columns:64px 1fr auto;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:12px;margin-bottom:12px}
+  .left img{width:64px;height:64px;border-radius:10px;object-fit:cover;background:#eee}
+  .mid .line1{display:flex;gap:10px;align-items:center;margin-bottom:2px}
+  .name{font-weight:800}
+  .pet{color:var(--muted);font-size:13px}
+  .title{font-weight:700;margin:4px 0}
+  .snippet{color:var(--text);opacity:.9;font-size:14px;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .meta{color:var(--muted);font-size:12px;margin-top:6px}
+  .right{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+  .btn{height:34px;padding:0 12px;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:pointer}
+  .btn.dark{background:var(--primary);border-color:var(--primary);color:#fff}
+
+  @media (max-width:720px){
+    .card{grid-template-columns:56px 1fr}
+    .right{align-items:flex-start}
+  }

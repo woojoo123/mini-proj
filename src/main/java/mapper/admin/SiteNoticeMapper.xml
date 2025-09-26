@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.SiteNoticeMapper">
+  <resultMap id="BaseResultMap" type="dto.SiteNoticeDto">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="is_pinned" jdbcType="BOOLEAN" property="isPinned" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from site_notice
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="dto.SiteNoticeDto">
+    insert into site_notice (id, title, is_pinned, 
+      created_at, content)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{isPinned,jdbcType=BOOLEAN}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="dto.SiteNoticeDto">
+    update site_notice
+    set title = #{title,jdbcType=VARCHAR},
+      is_pinned = #{isPinned,jdbcType=BOOLEAN},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, title, is_pinned, created_at, content
+    from site_notice
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, title, is_pinned, created_at, content
+    from site_notice
+  </select>
+</mapper>

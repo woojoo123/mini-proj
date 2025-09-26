@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="dto.Account" alias="account" />
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="org.mariadb.jdbc.Driver"></property>
+				<property name="url"
+					value="jdbc:mariadb://localhost:3306/pumda" />
+				<property name="username" value="root" />
+				<property name="password" value="7564" />
+				<property name="poolMaximumActiveConnections" value="500" />
+				<property name="poolMaximumIdleConnections" value="500" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers>
+		<!-- Admin Mappers -->
+		<mapper resource="mapper/admin/NotificationMapper.xml" />
+		<mapper resource="mapper/admin/ReportMapper.xml" />
+		<mapper resource="mapper/admin/SiteNoticeMapper.xml" />
+
+		<!-- Animal Mappers -->
+		<mapper resource="mapper/animal/AdoptionApplicationMapper.xml" />
+		<mapper resource="mapper/animal/AdoptionContractMapper.xml" />
+		<mapper resource="mapper/animal/AnimalMapper.xml" />
+
+		<!-- Board Mappers -->
+		<mapper resource="mapper/board/BoardCategoryMapper.xml" />
+		<mapper resource="mapper/board/BoardCommentLikeMapper.xml" />
+		<mapper resource="mapper/board/BoardCommentMapper.xml" />
+		<mapper resource="mapper/board/BoardLikeMapper.xml" />
+		<mapper resource="mapper/board/BoardPostMapper.xml" />
+
+		<!-- Donation Mappers -->
+		<mapper resource="mapper/donation/DonationSubscriptionMapper.xml" />
+		<mapper resource="mapper/donation/DonationTransactionMapper.xml" />
+
+		<!-- Member Mappers -->
+		<mapper resource="mapper/member/MemberMapper.xml" />
+		<mapper resource="mapper/member/MemberShelterFollowMapper.xml" />
+		<mapper resource="mapper/member/MemberSocialLoginMapper.xml" />
+
+		<!-- Shelter Mappers -->
+		<mapper resource="mapper/shelter/InquiryMapper.xml" />
+		<mapper resource="mapper/shelter/ShelterContentCommentMapper.xml" />
+		<mapper resource="mapper/shelter/ShelterContentLikeMapper.xml" />
+		<mapper resource="mapper/shelter/ShelterDailyContentMapper.xml" />
+		<mapper resource="mapper/shelter/ShelterMapper.xml" />
+		<mapper resource="mapper/shelter/ShelterRegistrationMapper.xml" />
+
+		<!-- Volunteer Mappers -->
+		<mapper resource="mapper/volunteer/VolunteerApplicationMapper.xml" />
+		<mapper resource="mapper/volunteer/VolunteerProgramMapper.xml" />
+	</mappers>
+</configuration>

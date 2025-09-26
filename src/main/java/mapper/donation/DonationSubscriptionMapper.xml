@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.DonationSubscriptionMapper">
+  <resultMap id="BaseResultMap" type="dto.DonationSubscriptionDto">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="shelter_id" jdbcType="INTEGER" property="shelterId" />
+    <result column="donation_type" jdbcType="VARCHAR" property="donationType" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="payment_method" jdbcType="VARCHAR" property="paymentMethod" />
+    <result column="payment_gateway" jdbcType="VARCHAR" property="paymentGateway" />
+    <result column="donor_name" jdbcType="VARCHAR" property="donorName" />
+    <result column="donor_email" jdbcType="VARCHAR" property="donorEmail" />
+    <result column="donor_phone" jdbcType="VARCHAR" property="donorPhone" />
+    <result column="start_date" jdbcType="DATE" property="startDate" />
+    <result column="recurring_status" jdbcType="VARCHAR" property="recurringStatus" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="message" jdbcType="LONGVARCHAR" property="message" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from donation_subscriptions
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="dto.DonationSubscriptionDto">
+    insert into donation_subscriptions (id, member_id, shelter_id, 
+      donation_type, amount, payment_method, 
+      payment_gateway, donor_name, donor_email, 
+      donor_phone, start_date, recurring_status, 
+      created_at, message)
+    values (#{id,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, #{shelterId,jdbcType=INTEGER}, 
+      #{donationType,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{paymentMethod,jdbcType=VARCHAR}, 
+      #{paymentGateway,jdbcType=VARCHAR}, #{donorName,jdbcType=VARCHAR}, #{donorEmail,jdbcType=VARCHAR}, 
+      #{donorPhone,jdbcType=VARCHAR}, #{startDate,jdbcType=DATE}, #{recurringStatus,jdbcType=VARCHAR}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{message,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="dto.DonationSubscriptionDto">
+    update donation_subscriptions
+    set member_id = #{memberId,jdbcType=INTEGER},
+      shelter_id = #{shelterId,jdbcType=INTEGER},
+      donation_type = #{donationType,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      payment_method = #{paymentMethod,jdbcType=VARCHAR},
+      payment_gateway = #{paymentGateway,jdbcType=VARCHAR},
+      donor_name = #{donorName,jdbcType=VARCHAR},
+      donor_email = #{donorEmail,jdbcType=VARCHAR},
+      donor_phone = #{donorPhone,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=DATE},
+      recurring_status = #{recurringStatus,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      message = #{message,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, member_id, shelter_id, donation_type, amount, payment_method, payment_gateway, 
+    donor_name, donor_email, donor_phone, start_date, recurring_status, created_at, message
+    from donation_subscriptions
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, member_id, shelter_id, donation_type, amount, payment_method, payment_gateway, 
+    donor_name, donor_email, donor_phone, start_date, recurring_status, created_at, message
+    from donation_subscriptions
+  </select>
+</mapper>

@@ -1,0 +1,158 @@
+/* 사이드바 스타일 오버라이드 */
+.sidebar {
+    background-color: var(--white-color) !important;
+    border-right: 1px solid var(--border-color) !important;
+}
+        
+.sidebar h1 {
+    color: var(--text-color) !important;
+}
+        
+.sidebar .system-name {
+    color: var(--text-light-color) !important;
+}
+        
+.sidebar nav a {
+    color: var(--text-light-color) !important;
+}
+        
+.sidebar nav a.active,
+.sidebar nav a:hover {
+    background-color: var(--primary-color) !important;
+    color: var(--white-color) !important;
+}
+        
+/* 통계 페이지 전용 스타일 */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.chart-container {
+    background-color: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.chart-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.chart-placeholder {
+    height: 300px;
+    background-color: #f8f9fa;
+    border: 2px dashed #dee2e6;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light-color);
+    font-size: 16px;
+}
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.summary-card {
+    background-color: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+}
+
+.summary-card .icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.summary-card .value {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.summary-card .label {
+    font-size: 14px;
+    color: var(--text-light-color);
+}
+
+.summary-card .change {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.summary-card .change.positive {
+    color: var(--primary-color);
+}
+
+.summary-card .change.negative {
+    color: var(--primary-color);
+}
+
+.recent-activities {
+    background-color: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 25px;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 16px;
+    color: white;
+}
+
+.activity-icon.user { background-color: var(--primary-color); }
+.activity-icon.report { background-color: var(--primary-color); }
+.activity-icon.inquiry { background-color: var(--primary-color); }
+.activity-icon.system { background-color: var(--primary-color); }
+
+.activity-content {
+    flex-grow: 1;
+}
+
+.activity-title {
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+.activity-time {
+    font-size: 12px;
+    color: var(--text-light-color);
+}
+
+

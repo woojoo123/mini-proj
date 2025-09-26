@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.MemberMapper">
+  <resultMap id="BaseResultMap" type="dto.MemberDto">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="password_hash" jdbcType="VARCHAR" property="passwordHash" />
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="full_name" jdbcType="VARCHAR" property="fullName" />
+    <result column="birth_date" jdbcType="DATE" property="birthDate" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="postal_code" jdbcType="VARCHAR" property="postalCode" />
+    <result column="account_status" jdbcType="VARCHAR" property="accountStatus" />
+    <result column="user_type" jdbcType="VARCHAR" property="userType" />
+    <result column="email_verified" jdbcType="BOOLEAN" property="emailVerified" />
+    <result column="phone_verified" jdbcType="BOOLEAN" property="phoneVerified" />
+    <result column="has_experience" jdbcType="BOOLEAN" property="hasExperience" />
+    <result column="email_verification_token" jdbcType="VARCHAR" property="emailVerificationToken" />
+    <result column="email_token_expires_at" jdbcType="TIMESTAMP" property="emailTokenExpiresAt" />
+    <result column="notify_announcement" jdbcType="BOOLEAN" property="notifyAnnouncement" />
+    <result column="notify_adoption" jdbcType="BOOLEAN" property="notifyAdoption" />
+    <result column="notify_followed_shelter" jdbcType="BOOLEAN" property="notifyFollowedShelter" />
+    <result column="notify_new_device" jdbcType="BOOLEAN" property="notifyNewDevice" />
+    <result column="password_reset_token" jdbcType="VARCHAR" property="passwordResetToken" />
+    <result column="password_token_expires_at" jdbcType="TIMESTAMP" property="passwordTokenExpiresAt" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="profile_image_url" jdbcType="VARCHAR" property="profileImageUrl" />
+    <result column="volunteer_hours_total" jdbcType="INTEGER" property="volunteerHoursTotal" />
+    <result column="donations_total" jdbcType="DECIMAL" property="donationsTotal" />
+    <result column="shelter_id" jdbcType="INTEGER" property="shelterId" />
+    <result column="shelter_manager_role" jdbcType="VARCHAR" property="shelterManagerRole" />
+    <result column="bio" jdbcType="LONGVARCHAR" property="bio" />
+    <result column="sanction_reason" jdbcType="LONGVARCHAR" property="sanctionReason" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from members
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="dto.MemberDto">
+    insert into members (id, username, email, 
+      password_hash, phone_number, full_name, 
+      birth_date, address, postal_code, 
+      account_status, user_type, email_verified, 
+      phone_verified, has_experience, email_verification_token, 
+      email_token_expires_at, notify_announcement, 
+      notify_adoption, notify_followed_shelter, 
+      notify_new_device, password_reset_token, password_token_expires_at, 
+      nickname, profile_image_url, volunteer_hours_total, 
+      donations_total, shelter_id, shelter_manager_role, 
+      bio, sanction_reason)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{passwordHash,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, #{fullName,jdbcType=VARCHAR}, 
+      #{birthDate,jdbcType=DATE}, #{address,jdbcType=VARCHAR}, #{postalCode,jdbcType=VARCHAR}, 
+      #{accountStatus,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, #{emailVerified,jdbcType=BOOLEAN}, 
+      #{phoneVerified,jdbcType=BOOLEAN}, #{hasExperience,jdbcType=BOOLEAN}, #{emailVerificationToken,jdbcType=VARCHAR}, 
+      #{emailTokenExpiresAt,jdbcType=TIMESTAMP}, #{notifyAnnouncement,jdbcType=BOOLEAN}, 
+      #{notifyAdoption,jdbcType=BOOLEAN}, #{notifyFollowedShelter,jdbcType=BOOLEAN}, 
+      #{notifyNewDevice,jdbcType=BOOLEAN}, #{passwordResetToken,jdbcType=VARCHAR}, #{passwordTokenExpiresAt,jdbcType=TIMESTAMP}, 
+      #{nickname,jdbcType=VARCHAR}, #{profileImageUrl,jdbcType=VARCHAR}, #{volunteerHoursTotal,jdbcType=INTEGER}, 
+      #{donationsTotal,jdbcType=DECIMAL}, #{shelterId,jdbcType=INTEGER}, #{shelterManagerRole,jdbcType=VARCHAR}, 
+      #{bio,jdbcType=LONGVARCHAR}, #{sanctionReason,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="dto.MemberDto">
+    update members
+    set username = #{username,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      password_hash = #{passwordHash,jdbcType=VARCHAR},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      full_name = #{fullName,jdbcType=VARCHAR},
+      birth_date = #{birthDate,jdbcType=DATE},
+      address = #{address,jdbcType=VARCHAR},
+      postal_code = #{postalCode,jdbcType=VARCHAR},
+      account_status = #{accountStatus,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=VARCHAR},
+      email_verified = #{emailVerified,jdbcType=BOOLEAN},
+      phone_verified = #{phoneVerified,jdbcType=BOOLEAN},
+      has_experience = #{hasExperience,jdbcType=BOOLEAN},
+      email_verification_token = #{emailVerificationToken,jdbcType=VARCHAR},
+      email_token_expires_at = #{emailTokenExpiresAt,jdbcType=TIMESTAMP},
+      notify_announcement = #{notifyAnnouncement,jdbcType=BOOLEAN},
+      notify_adoption = #{notifyAdoption,jdbcType=BOOLEAN},
+      notify_followed_shelter = #{notifyFollowedShelter,jdbcType=BOOLEAN},
+      notify_new_device = #{notifyNewDevice,jdbcType=BOOLEAN},
+      password_reset_token = #{passwordResetToken,jdbcType=VARCHAR},
+      password_token_expires_at = #{passwordTokenExpiresAt,jdbcType=TIMESTAMP},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      profile_image_url = #{profileImageUrl,jdbcType=VARCHAR},
+      volunteer_hours_total = #{volunteerHoursTotal,jdbcType=INTEGER},
+      donations_total = #{donationsTotal,jdbcType=DECIMAL},
+      shelter_id = #{shelterId,jdbcType=INTEGER},
+      shelter_manager_role = #{shelterManagerRole,jdbcType=VARCHAR},
+      bio = #{bio,jdbcType=LONGVARCHAR},
+      sanction_reason = #{sanctionReason,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, username, email, password_hash, phone_number, full_name, birth_date, address, 
+    postal_code, account_status, user_type, email_verified, phone_verified, has_experience, 
+    email_verification_token, email_token_expires_at, notify_announcement, notify_adoption, 
+    notify_followed_shelter, notify_new_device, password_reset_token, password_token_expires_at, 
+    nickname, profile_image_url, volunteer_hours_total, donations_total, shelter_id, 
+    shelter_manager_role, bio, sanction_reason
+    from members
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, username, email, password_hash, phone_number, full_name, birth_date, address, 
+    postal_code, account_status, user_type, email_verified, phone_verified, has_experience, 
+    email_verification_token, email_token_expires_at, notify_announcement, notify_adoption, 
+    notify_followed_shelter, notify_new_device, password_reset_token, password_token_expires_at, 
+    nickname, profile_image_url, volunteer_hours_total, donations_total, shelter_id, 
+    shelter_manager_role, bio, sanction_reason
+    from members
+  </select>
+</mapper>

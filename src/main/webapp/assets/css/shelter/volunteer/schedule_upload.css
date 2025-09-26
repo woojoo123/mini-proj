@@ -1,0 +1,390 @@
+    :root {
+      /* Brand palette (warm beige/brown) */
+      --bg: #F9F9F9;
+      --surface: #FFFFFF;
+      --primary: #8D7B68;
+      --primary-600: #7A695B;
+      --accent: #F1DEC9;
+      --text: #3C2A21;
+      --muted: #6B5E55;
+      --border: #E9E3DC;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --shadow: 0 6px 18px rgba(60, 42, 33, 0.06);
+      --shadow-sm: 0 2px 10px rgba(60, 42, 33, 0.05);
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      letter-spacing: .2px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto 80px;
+      padding: 0 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 0 0 6px;
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #7b6f66;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .section+.section {
+      margin-top: 28px
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0 0 14px;
+    }
+
+    .hr {
+      height: 1px;
+      background: var(--border);
+      margin: 16px 0
+    }
+
+    /* Form */
+    form {
+      display: block
+    }
+
+    label {
+      display: block;
+      font-size: 12.5px;
+      color: #6b5e55;
+      margin: 8px 2px 6px;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="date"],
+    input[type="time"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+      outline: none;
+      font-size: 14px;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow .12s, border-color .12s;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #a3978f
+    }
+
+    select {
+      appearance: none;
+      background-image:
+        linear-gradient(45deg, transparent 50%, #a08974 50%),
+        linear-gradient(135deg, #a08974 50%, transparent 50%),
+        linear-gradient(to right, transparent, transparent);
+      background-position:
+        calc(100% - 18px) calc(50% - 4px),
+        calc(100% - 12px) calc(50% - 4px),
+        100% 0;
+      background-size: 6px 6px, 6px 6px, 2.5em 100%;
+      background-repeat: no-repeat;
+    }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .g2 {
+      grid-template-columns: repeat(2, 1fr)
+    }
+
+    .g3 {
+      grid-template-columns: repeat(3, 1fr)
+    }
+
+    .g4 {
+      grid-template-columns: repeat(4, 1fr)
+    }
+
+    @media (max-width: 860px) {
+
+      .g2,
+      .g3,
+      .g4 {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .inline {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      background: var(--accent);
+      color: #5a4b40;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* Actions */
+    .actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      margin-top: 16px;
+    }
+
+    .btn {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: #53463e;
+      padding: 11px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--shadow-sm);
+      transition: transform .05s, background .12s, border-color .12s;
+    }
+
+    .btn:hover {
+      background: #faf7f3
+    }
+
+    .btn:active {
+      transform: translateY(1px)
+    }
+
+    .btn.primary {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary-600);
+    }
+
+    .btn.primary:hover {
+      background: var(--primary-600)
+    }
+
+    .btn .ico {
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+      fill: currentColor;
+    }
+
+    /* Small adorners */
+    .suffix {
+      position: relative;
+    }
+
+    .suffix span {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #8e7f75;
+      font-size: 13px;
+      pointer-events: none;
+    }
+
+    /* Modal preview */
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      place-items: center;
+      background: rgba(0, 0, 0, .32);
+      z-index: 40;
+    }
+
+    .modal.open {
+      display: grid
+    }
+
+    .modal .modal-card {
+      width: min(780px, calc(100% - 28px));
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 40px rgba(60, 42, 33, .18);
+      padding: 18px;
+      max-height: 80vh;
+      overflow: auto;
+    }
+
+    /* --- multi-date chips --- */
+    .chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px
+    }
+
+    .chip.removable {
+      background: var(--accent);
+      color: #5a4b40;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700
+    }
+
+    .chip.removable button {
+      all: unset;
+      cursor: pointer;
+      margin-left: 6px;
+      font-weight: 900
+    }
+
+    .modal h3 {
+      margin: 0 0 10px;
+      font-size: 20px
+    }
+
+    .kv {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 8px;
+      padding: 10px 0;
+      border-bottom: 1px dashed #eee
+    }
+
+    .kv:last-child {
+      border-bottom: 0
+    }
+
+    .kv b {
+      color: #6b5e55
+    }
+
+    /* --- multi-date inline calendar --- */
+    .cal-wrap {
+      margin-top: 8px
+    }
+
+    .cal-head {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .cal-head strong {
+      min-width: 110px;
+      text-align: center
+    }
+
+    .cal-nav {
+      all: unset;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 8px
+    }
+
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      margin-top: 8px
+    }
+
+    .cal-cell {
+      padding: 8px 0;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      user-select: none;
+      cursor: pointer;
+      background: #fff
+    }
+
+    .cal-cell.muted {
+      opacity: .45
+    }
+
+    .cal-cell.sel {
+      background: var(--accent);
+      border-color: #d8c3ab;
+      font-weight: 700
+    }
+
+    .cal-dow {
+      font-size: 12px;
+      color: #7b6f66;
+      text-align: center;
+      padding: 2px 0
+    }
+
+    .chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px
+    }
+
+    .chip.removable {
+      background: var(--accent);
+      color: #5a4b40;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700
+    }
+
+    .chip.removable button {
+      all: unset;
+      cursor: pointer;
+      margin-left: 6px;
+      font-weight: 900
+    }

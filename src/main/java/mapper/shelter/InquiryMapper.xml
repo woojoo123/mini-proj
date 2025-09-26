@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.InquiryMapper">
+  <resultMap id="BaseResultMap" type="dto.InquiryDto">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="shelter_id" jdbcType="INTEGER" property="shelterId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="assigned_to" jdbcType="INTEGER" property="assignedTo" />
+    <result column="replied_at" jdbcType="TIMESTAMP" property="repliedAt" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="reply" jdbcType="LONGVARCHAR" property="reply" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from inquiries
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="dto.InquiryDto">
+    insert into inquiries (id, member_id, shelter_id, 
+      title, status, assigned_to, 
+      replied_at, created_at, content, 
+      reply)
+    values (#{id,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, #{shelterId,jdbcType=INTEGER}, 
+      #{title,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{assignedTo,jdbcType=INTEGER}, 
+      #{repliedAt,jdbcType=TIMESTAMP}, #{createdAt,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}, 
+      #{reply,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="dto.InquiryDto">
+    update inquiries
+    set member_id = #{memberId,jdbcType=INTEGER},
+      shelter_id = #{shelterId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      assigned_to = #{assignedTo,jdbcType=INTEGER},
+      replied_at = #{repliedAt,jdbcType=TIMESTAMP},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR},
+      reply = #{reply,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, member_id, shelter_id, title, status, assigned_to, replied_at, created_at, 
+    content, reply
+    from inquiries
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, member_id, shelter_id, title, status, assigned_to, replied_at, created_at, 
+    content, reply
+    from inquiries
+  </select>
+</mapper>

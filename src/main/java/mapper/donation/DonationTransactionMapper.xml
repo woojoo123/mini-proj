@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.DonationTransactionMapper">
+  <resultMap id="BaseResultMap" type="dto.DonationTransactionDto">
+    <id column="transaction_id" jdbcType="VARCHAR" property="transactionId" />
+    <result column="subscription_id" jdbcType="INTEGER" property="subscriptionId" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="paid_at" jdbcType="TIMESTAMP" property="paidAt" />
+    <result column="pg_transaction_data" jdbcType="LONGVARCHAR" property="pgTransactionData" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from donation_transactions
+    where transaction_id = #{transactionId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="dto.DonationTransactionDto">
+    insert into donation_transactions (transaction_id, subscription_id, amount, 
+      paid_at, pg_transaction_data)
+    values (#{transactionId,jdbcType=VARCHAR}, #{subscriptionId,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, 
+      #{paidAt,jdbcType=TIMESTAMP}, #{pgTransactionData,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="dto.DonationTransactionDto">
+    update donation_transactions
+    set subscription_id = #{subscriptionId,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=DECIMAL},
+      paid_at = #{paidAt,jdbcType=TIMESTAMP},
+      pg_transaction_data = #{pgTransactionData,jdbcType=LONGVARCHAR}
+    where transaction_id = #{transactionId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select transaction_id, subscription_id, amount, paid_at, pg_transaction_data
+    from donation_transactions
+    where transaction_id = #{transactionId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select transaction_id, subscription_id, amount, paid_at, pg_transaction_data
+    from donation_transactions
+  </select>
+</mapper>

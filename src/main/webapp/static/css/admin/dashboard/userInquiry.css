@@ -1,0 +1,137 @@
+/* 사이드바 스타일 오버라이드 */
+.sidebar {
+	background-color: var(--white-color) !important;
+	border-right: 1px solid var(--border-color) !important;
+}
+
+.sidebar h1 {
+	color: var(--text-color) !important;
+}
+
+.sidebar .system-name {
+	color: var(--text-light-color) !important;
+}
+
+.sidebar nav a {
+	color: var(--text-light-color) !important;
+}
+
+.sidebar nav a.active,
+.sidebar nav a:hover {
+	background-color: var(--primary-color) !important;
+	color: var(--white-color) !important;
+}
+
+/* 고객 문의 관리 전용 스타일 */
+.basic-search {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+.search-input {
+	flex-grow: 1;
+	padding: 10px 15px;
+}
+
+.details-search {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 15px;
+}
+
+.filter-buttons {
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+	margin-top: 20px;
+}
+
+/* --- 메모 목록 테이블 --- */
+.memo-list-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 15px;
+}
+
+.memo-list-header h3 {
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.memo-list-header .total-count {
+	font-size: 14px;
+	color: var(--text-light-color);
+}
+
+.memo-list-header .bulk-actions {
+	display: flex;
+	gap: 10px;
+}
+
+.memo-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 14px;
+}
+
+.memo-table th,
+.memo-table td {
+	padding: 15px;
+	text-align: left;
+	vertical-align: middle;
+	border-bottom: 1px solid var(--border-color);
+}
+
+.memo-table thead {
+	background-color: #fafafa;
+}
+
+.memo-table th {
+	color: var(--text-light-color);
+	font-weight: 500;
+}
+
+.member-info {
+	display: flex;
+	align-items: center;
+}
+
+.member-info .avatar {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: var(--primary-color);
+	margin-right: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 500;
+	color: var(--white-color);
+}
+
+.member-info .name {
+	font-weight: 500;
+}
+
+.member-info .id {
+	font-size: 12px;
+	color: var(--text-light-color);
+}
+
+.member-info .email {
+	font-size: 12px;
+	color: var(--text-light-color);
+}
+
+.memo-title {
+	font-weight: 500;
+	margin-bottom: 5px;
+}
+
+.memo-preview {
+	font-size: 12px;
+	color: var(--text-light-color);
+}

@@ -1,0 +1,79 @@
+ :root{
+    --card:#fff; --line:#ece7e1; --ink:#111827; --muted:#6b7280;
+    --shadow:0 8px 26px rgba(17,24,39,.06);
+    --green:#16a34a; --red:#e11d48; --amber:#f59e0b; --gray:#9aa0a6;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:#fff; color:var(--ink); font-family:"Noto Sans KR",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+  .wrap{max-width:1100px; margin:26px auto 80px; padding:0 20px}
+
+  /* header */
+  .head{display:flex; align-items:flex-start; gap:10px; margin-bottom:12px}
+  .back{font-size:22px; color:#374151}
+  h1{margin:0; font-size:28px} .sub{color:#8b9097; margin-top:6px}
+
+  /* summary */
+  .summary{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:18px 0}
+  .sbox{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; position:relative; box-shadow:var(--shadow)}
+  .sbox .k{color:#9aa0a6; font-size:13px} .sbox .v{margin-top:8px; font-size:22px; font-weight:800}
+  .sbox .ico{position:absolute; right:12px; top:12px; width:30px; height:30px; border-radius:50%; background:#f3eee8; display:grid; place-items:center; color:#7a6a59}
+
+  /* toolbar */
+  .toolbar{background:var(--card); border:1px solid var(--line); border-radius:12px; box-shadow:var(--shadow); padding:12px; display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+  .search{flex:1; min-width:280px; display:flex; align-items:center; gap:8px; border:1px solid var(--line); border-radius:10px; padding:8px 10px; color:#9aa0a6}
+  .search input{border:none; outline:none; flex:1; font-size:14px}
+
+  /* nice selects with ▼ caret */
+  .select, .range-btn{
+    appearance:none; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:8px 34px 8px 12px;
+    position:relative; line-height:1.2; font-size:14px; cursor:pointer;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 20 20'><path fill='%238b9097' d='M5.5 7.5L10 12l4.5-4.5z'/></svg>");
+    background-repeat:no-repeat; background-position:right 10px center;
+  }
+  .range-btn{display:inline-flex; align-items:center; gap:6px}
+
+  /* bulk row */
+  .bulk-row{display:flex; align-items:center; gap:12px; margin:10px 2px 6px}
+  .hint{color:#666; font-size:14px}
+  .btn{border:none; border-radius:10px; padding:8px 12px; font-weight:800; cursor:pointer}
+  .btn.green{background:var(--green); color:#fff}
+  .btn.red{background:var(--red); color:#fff}
+  .btn:disabled{opacity:.45; cursor:not-allowed}
+
+  /* list */
+  .list{display:flex; flex-direction:column; gap:12px}
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);
+    padding:14px 16px;
+    display:grid; grid-template-columns:24px 1fr auto; gap:12px 16px; align-items:flex-start;
+  }
+  .rowcheck{margin-top:4px}
+  .name{font-size:18px; font-weight:800; margin-bottom:6px; display:flex; align-items:center; gap:8px}
+  .badge{font-size:12px; padding:4px 8px; border-radius:999px; color:#fff; font-weight:800}
+  .b-wait{background:var(--amber)} .b-approve{background:var(--green)} .b-reject{background:var(--red)}
+  .b-attend{background:#8d7b68} .b-absent{background:#9aa0a6}
+  .row{color:#374151; font-size:14px; margin-top:4px}
+  .muted{color:var(--muted)}
+
+  /* right action area pinned bottom-right */
+  .right{
+    display:flex; flex-direction:column; align-items:flex-end; justify-content:flex-end;
+    min-height:100%; gap:10px;
+  }
+  .actions{display:flex; gap:8px}
+  .pill{border:1px solid #e7e2dc; background:#f3eee9; color:#4b3d32; border-radius:999px; padding:6px 10px; font-weight:800; display:flex; align-items:center; gap:6px; cursor:pointer}
+  .pill.white{background:#fff}
+
+  /* date popover */
+  .popover{position:absolute; z-index:20; background:#fff; border:1px solid var(--line); border-radius:12px; box-shadow:var(--shadow); width:320px; padding:12px; display:none}
+  .popover .row{display:flex; gap:8px; margin-top:6px}
+  .popover input[type="date"]{flex:1; padding:8px 10px; border:1px solid var(--line); border-radius:10px}
+  .popover .quick{display:flex; gap:6px; flex-wrap:wrap; margin-top:8px}
+  .popover .quick button{border:1px solid var(--line); background:#fafafa; border-radius:999px; padding:6px 10px; cursor:pointer}
+  .popover .actions{display:flex; justify-content:flex-end; gap:8px; margin-top:10px}
+
+  @media (max-width:720px){
+    .card{grid-template-columns:24px 1fr}
+    .right{align-items:flex-start}
+  }

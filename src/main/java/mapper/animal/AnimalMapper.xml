@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.AnimalMapper">
+  <resultMap id="BaseResultMap" type="dto.AnimalDto">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="shelter_id" jdbcType="INTEGER" property="shelterId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="species" jdbcType="VARCHAR" property="species" />
+    <result column="breed" jdbcType="VARCHAR" property="breed" />
+    <result column="age_months" jdbcType="INTEGER" property="ageMonths" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="weight_kg" jdbcType="DECIMAL" property="weightKg" />
+    <result column="neutered" jdbcType="BOOLEAN" property="neutered" />
+    <result column="vaccinated" jdbcType="BOOLEAN" property="vaccinated" />
+    <result column="training_level" jdbcType="VARCHAR" property="trainingLevel" />
+    <result column="join_date" jdbcType="DATE" property="joinDate" />
+    <result column="rescue_location" jdbcType="VARCHAR" property="rescueLocation" />
+    <result column="microchip_number" jdbcType="VARCHAR" property="microchipNumber" />
+    <result column="adoption_status" jdbcType="VARCHAR" property="adoptionStatus" />
+    <result column="profile_image_url" jdbcType="VARCHAR" property="profileImageUrl" />
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+    <result column="rescue_story" jdbcType="LONGVARCHAR" property="rescueStory" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from animals
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="dto.AnimalDto">
+    insert into animals (id, shelter_id, name, 
+      species, breed, age_months, 
+      gender, weight_kg, neutered, 
+      vaccinated, training_level, join_date, 
+      rescue_location, microchip_number, adoption_status, 
+      profile_image_url, description, rescue_story
+      )
+    values (#{id,jdbcType=INTEGER}, #{shelterId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{species,jdbcType=VARCHAR}, #{breed,jdbcType=VARCHAR}, #{ageMonths,jdbcType=INTEGER}, 
+      #{gender,jdbcType=VARCHAR}, #{weightKg,jdbcType=DECIMAL}, #{neutered,jdbcType=BOOLEAN}, 
+      #{vaccinated,jdbcType=BOOLEAN}, #{trainingLevel,jdbcType=VARCHAR}, #{joinDate,jdbcType=DATE}, 
+      #{rescueLocation,jdbcType=VARCHAR}, #{microchipNumber,jdbcType=VARCHAR}, #{adoptionStatus,jdbcType=VARCHAR}, 
+      #{profileImageUrl,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR}, #{rescueStory,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="dto.AnimalDto">
+    update animals
+    set shelter_id = #{shelterId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      species = #{species,jdbcType=VARCHAR},
+      breed = #{breed,jdbcType=VARCHAR},
+      age_months = #{ageMonths,jdbcType=INTEGER},
+      gender = #{gender,jdbcType=VARCHAR},
+      weight_kg = #{weightKg,jdbcType=DECIMAL},
+      neutered = #{neutered,jdbcType=BOOLEAN},
+      vaccinated = #{vaccinated,jdbcType=BOOLEAN},
+      training_level = #{trainingLevel,jdbcType=VARCHAR},
+      join_date = #{joinDate,jdbcType=DATE},
+      rescue_location = #{rescueLocation,jdbcType=VARCHAR},
+      microchip_number = #{microchipNumber,jdbcType=VARCHAR},
+      adoption_status = #{adoptionStatus,jdbcType=VARCHAR},
+      profile_image_url = #{profileImageUrl,jdbcType=VARCHAR},
+      description = #{description,jdbcType=LONGVARCHAR},
+      rescue_story = #{rescueStory,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, shelter_id, name, species, breed, age_months, gender, weight_kg, neutered, 
+    vaccinated, training_level, join_date, rescue_location, microchip_number, adoption_status, 
+    profile_image_url, description, rescue_story
+    from animals
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, shelter_id, name, species, breed, age_months, gender, weight_kg, neutered, 
+    vaccinated, training_level, join_date, rescue_location, microchip_number, adoption_status, 
+    profile_image_url, description, rescue_story
+    from animals
+  </select>
+</mapper>

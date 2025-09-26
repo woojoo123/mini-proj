@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.AdoptionApplicationMapper">
+  <resultMap id="BaseResultMap" type="dto.AdoptionApplicationDto">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="animal_id" jdbcType="INTEGER" property="animalId" />
+    <result column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="application_date" jdbcType="DATE" property="applicationDate" />
+    <result column="preferred_adoption_date" jdbcType="DATE" property="preferredAdoptionDate" />
+    <result column="application_status" jdbcType="VARCHAR" property="applicationStatus" />
+    <result column="current_address" jdbcType="VARCHAR" property="currentAddress" />
+    <result column="housing_type" jdbcType="VARCHAR" property="housingType" />
+    <result column="housing_ownership" jdbcType="VARCHAR" property="housingOwnership" />
+    <result column="has_yard" jdbcType="BOOLEAN" property="hasYard" />
+    <result column="yard_fenced" jdbcType="BOOLEAN" property="yardFenced" />
+    <result column="household_members" jdbcType="INTEGER" property="householdMembers" />
+    <result column="has_children" jdbcType="BOOLEAN" property="hasChildren" />
+    <result column="children_ages" jdbcType="VARCHAR" property="childrenAges" />
+    <result column="all_members_agree" jdbcType="BOOLEAN" property="allMembersAgree" />
+    <result column="previous_pet_experience" jdbcType="BOOLEAN" property="previousPetExperience" />
+    <result column="pet_care_knowledge_level" jdbcType="VARCHAR" property="petCareKnowledgeLevel" />
+    <result column="monthly_pet_budget" jdbcType="DECIMAL" property="monthlyPetBudget" />
+    <result column="emergency_fund_prepared" jdbcType="BOOLEAN" property="emergencyFundPrepared" />
+    <result column="reviewed_by" jdbcType="INTEGER" property="reviewedBy" />
+    <result column="review_date" jdbcType="DATE" property="reviewDate" />
+    <result column="current_pets" jdbcType="LONGVARCHAR" property="currentPets" />
+    <result column="adoption_reason" jdbcType="LONGVARCHAR" property="adoptionReason" />
+    <result column="daily_care_plan" jdbcType="LONGVARCHAR" property="dailyCarePlan" />
+    <result column="emergency_vet_plan" jdbcType="LONGVARCHAR" property="emergencyVetPlan" />
+    <result column="vacation_care_plan" jdbcType="LONGVARCHAR" property="vacationCarePlan" />
+    <result column="special_requests" jdbcType="LONGVARCHAR" property="specialRequests" />
+    <result column="review_notes" jdbcType="LONGVARCHAR" property="reviewNotes" />
+    <result column="approval_conditions" jdbcType="LONGVARCHAR" property="approvalConditions" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from adoption_applications
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="dto.AdoptionApplicationDto">
+    insert into adoption_applications (id, animal_id, member_id, 
+      application_date, preferred_adoption_date, application_status, 
+      current_address, housing_type, housing_ownership, 
+      has_yard, yard_fenced, household_members, 
+      has_children, children_ages, all_members_agree, 
+      previous_pet_experience, pet_care_knowledge_level, 
+      monthly_pet_budget, emergency_fund_prepared, 
+      reviewed_by, review_date, current_pets, 
+      adoption_reason, daily_care_plan, 
+      emergency_vet_plan, vacation_care_plan, 
+      special_requests, review_notes, approval_conditions
+      )
+    values (#{id,jdbcType=INTEGER}, #{animalId,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, 
+      #{applicationDate,jdbcType=DATE}, #{preferredAdoptionDate,jdbcType=DATE}, #{applicationStatus,jdbcType=VARCHAR}, 
+      #{currentAddress,jdbcType=VARCHAR}, #{housingType,jdbcType=VARCHAR}, #{housingOwnership,jdbcType=VARCHAR}, 
+      #{hasYard,jdbcType=BOOLEAN}, #{yardFenced,jdbcType=BOOLEAN}, #{householdMembers,jdbcType=INTEGER}, 
+      #{hasChildren,jdbcType=BOOLEAN}, #{childrenAges,jdbcType=VARCHAR}, #{allMembersAgree,jdbcType=BOOLEAN}, 
+      #{previousPetExperience,jdbcType=BOOLEAN}, #{petCareKnowledgeLevel,jdbcType=VARCHAR}, 
+      #{monthlyPetBudget,jdbcType=DECIMAL}, #{emergencyFundPrepared,jdbcType=BOOLEAN}, 
+      #{reviewedBy,jdbcType=INTEGER}, #{reviewDate,jdbcType=DATE}, #{currentPets,jdbcType=LONGVARCHAR}, 
+      #{adoptionReason,jdbcType=LONGVARCHAR}, #{dailyCarePlan,jdbcType=LONGVARCHAR}, 
+      #{emergencyVetPlan,jdbcType=LONGVARCHAR}, #{vacationCarePlan,jdbcType=LONGVARCHAR}, 
+      #{specialRequests,jdbcType=LONGVARCHAR}, #{reviewNotes,jdbcType=LONGVARCHAR}, #{approvalConditions,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="dto.AdoptionApplicationDto">
+    update adoption_applications
+    set animal_id = #{animalId,jdbcType=INTEGER},
+      member_id = #{memberId,jdbcType=INTEGER},
+      application_date = #{applicationDate,jdbcType=DATE},
+      preferred_adoption_date = #{preferredAdoptionDate,jdbcType=DATE},
+      application_status = #{applicationStatus,jdbcType=VARCHAR},
+      current_address = #{currentAddress,jdbcType=VARCHAR},
+      housing_type = #{housingType,jdbcType=VARCHAR},
+      housing_ownership = #{housingOwnership,jdbcType=VARCHAR},
+      has_yard = #{hasYard,jdbcType=BOOLEAN},
+      yard_fenced = #{yardFenced,jdbcType=BOOLEAN},
+      household_members = #{householdMembers,jdbcType=INTEGER},
+      has_children = #{hasChildren,jdbcType=BOOLEAN},
+      children_ages = #{childrenAges,jdbcType=VARCHAR},
+      all_members_agree = #{allMembersAgree,jdbcType=BOOLEAN},
+      previous_pet_experience = #{previousPetExperience,jdbcType=BOOLEAN},
+      pet_care_knowledge_level = #{petCareKnowledgeLevel,jdbcType=VARCHAR},
+      monthly_pet_budget = #{monthlyPetBudget,jdbcType=DECIMAL},
+      emergency_fund_prepared = #{emergencyFundPrepared,jdbcType=BOOLEAN},
+      reviewed_by = #{reviewedBy,jdbcType=INTEGER},
+      review_date = #{reviewDate,jdbcType=DATE},
+      current_pets = #{currentPets,jdbcType=LONGVARCHAR},
+      adoption_reason = #{adoptionReason,jdbcType=LONGVARCHAR},
+      daily_care_plan = #{dailyCarePlan,jdbcType=LONGVARCHAR},
+      emergency_vet_plan = #{emergencyVetPlan,jdbcType=LONGVARCHAR},
+      vacation_care_plan = #{vacationCarePlan,jdbcType=LONGVARCHAR},
+      special_requests = #{specialRequests,jdbcType=LONGVARCHAR},
+      review_notes = #{reviewNotes,jdbcType=LONGVARCHAR},
+      approval_conditions = #{approvalConditions,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, animal_id, member_id, application_date, preferred_adoption_date, application_status, 
+    current_address, housing_type, housing_ownership, has_yard, yard_fenced, household_members, 
+    has_children, children_ages, all_members_agree, previous_pet_experience, pet_care_knowledge_level, 
+    monthly_pet_budget, emergency_fund_prepared, reviewed_by, review_date, current_pets, 
+    adoption_reason, daily_care_plan, emergency_vet_plan, vacation_care_plan, special_requests, 
+    review_notes, approval_conditions
+    from adoption_applications
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, animal_id, member_id, application_date, preferred_adoption_date, application_status, 
+    current_address, housing_type, housing_ownership, has_yard, yard_fenced, household_members, 
+    has_children, children_ages, all_members_agree, previous_pet_experience, pet_care_knowledge_level, 
+    monthly_pet_budget, emergency_fund_prepared, reviewed_by, review_date, current_pets, 
+    adoption_reason, daily_care_plan, emergency_vet_plan, vacation_care_plan, special_requests, 
+    review_notes, approval_conditions
+    from adoption_applications
+  </select>
+</mapper>

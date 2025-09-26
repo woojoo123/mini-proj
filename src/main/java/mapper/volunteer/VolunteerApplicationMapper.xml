@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.VolunteerApplicationMapper">
+  <resultMap id="BaseResultMap" type="dto.VolunteerApplicationDto">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="volunteer_id" jdbcType="INTEGER" property="volunteerId" />
+    <result column="application_date" jdbcType="DATE" property="applicationDate" />
+    <result column="application_status" jdbcType="VARCHAR" property="applicationStatus" />
+    <result column="program_id" jdbcType="INTEGER" property="programId" />
+    <result column="review_notes" jdbcType="LONGVARCHAR" property="reviewNotes" />
+    <result column="notes" jdbcType="LONGVARCHAR" property="notes" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from volunteer_applications
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="dto.VolunteerApplicationDto">
+    insert into volunteer_applications (id, volunteer_id, application_date, 
+      application_status, program_id, review_notes, 
+      notes)
+    values (#{id,jdbcType=INTEGER}, #{volunteerId,jdbcType=INTEGER}, #{applicationDate,jdbcType=DATE}, 
+      #{applicationStatus,jdbcType=VARCHAR}, #{programId,jdbcType=INTEGER}, #{reviewNotes,jdbcType=LONGVARCHAR}, 
+      #{notes,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="dto.VolunteerApplicationDto">
+    update volunteer_applications
+    set volunteer_id = #{volunteerId,jdbcType=INTEGER},
+      application_date = #{applicationDate,jdbcType=DATE},
+      application_status = #{applicationStatus,jdbcType=VARCHAR},
+      program_id = #{programId,jdbcType=INTEGER},
+      review_notes = #{reviewNotes,jdbcType=LONGVARCHAR},
+      notes = #{notes,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, volunteer_id, application_date, application_status, program_id, review_notes, 
+    notes
+    from volunteer_applications
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, volunteer_id, application_date, application_status, program_id, review_notes, 
+    notes
+    from volunteer_applications
+  </select>
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.MemberShelterFollowMapper">
+  <resultMap id="BaseResultMap" type="dto.MemberShelterFollowDto">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="shelter_id" jdbcType="INTEGER" property="shelterId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from member_shelter_follows
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="dto.MemberShelterFollowDto">
+    insert into member_shelter_follows (id, member_id, shelter_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, #{shelterId,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="dto.MemberShelterFollowDto">
+    update member_shelter_follows
+    set member_id = #{memberId,jdbcType=INTEGER},
+      shelter_id = #{shelterId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, member_id, shelter_id
+    from member_shelter_follows
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, member_id, shelter_id
+    from member_shelter_follows
+  </select>
+</mapper>

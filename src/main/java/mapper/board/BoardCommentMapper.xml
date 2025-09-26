@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.BoardCommentMapper">
+  <resultMap id="BaseResultMap" type="dto.BoardCommentDto">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="post_id" jdbcType="INTEGER" property="postId" />
+    <result column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="depth_level" jdbcType="INTEGER" property="depthLevel" />
+    <result column="comment_order" jdbcType="INTEGER" property="commentOrder" />
+    <result column="like_count" jdbcType="INTEGER" property="likeCount" />
+    <result column="is_deleted" jdbcType="BOOLEAN" property="isDeleted" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from board_comments
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="dto.BoardCommentDto">
+    insert into board_comments (id, post_id, member_id, 
+      parent_id, depth_level, comment_order, 
+      like_count, is_deleted, content
+      )
+    values (#{id,jdbcType=INTEGER}, #{postId,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, 
+      #{parentId,jdbcType=INTEGER}, #{depthLevel,jdbcType=INTEGER}, #{commentOrder,jdbcType=INTEGER}, 
+      #{likeCount,jdbcType=INTEGER}, #{isDeleted,jdbcType=BOOLEAN}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="dto.BoardCommentDto">
+    update board_comments
+    set post_id = #{postId,jdbcType=INTEGER},
+      member_id = #{memberId,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      depth_level = #{depthLevel,jdbcType=INTEGER},
+      comment_order = #{commentOrder,jdbcType=INTEGER},
+      like_count = #{likeCount,jdbcType=INTEGER},
+      is_deleted = #{isDeleted,jdbcType=BOOLEAN},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, post_id, member_id, parent_id, depth_level, comment_order, like_count, 
+    is_deleted, content
+    from board_comments
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, post_id, member_id, parent_id, depth_level, comment_order, like_count, 
+    is_deleted, content
+    from board_comments
+  </select>
+</mapper>

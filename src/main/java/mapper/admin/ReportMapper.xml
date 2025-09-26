@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ReportMapper">
+  <resultMap id="BaseResultMap" type="dto.ReportDto">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="reporter_id" jdbcType="INTEGER" property="reporterId" />
+    <result column="reported_type" jdbcType="VARCHAR" property="reportedType" />
+    <result column="reported_post_id" jdbcType="INTEGER" property="reportedPostId" />
+    <result column="reported_member_id" jdbcType="INTEGER" property="reportedMemberId" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="admin_id" jdbcType="INTEGER" property="adminId" />
+    <result column="resolved_at" jdbcType="TIMESTAMP" property="resolvedAt" />
+    <result column="action_taken" jdbcType="VARCHAR" property="actionTaken" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+    <result column="resolution_notes" jdbcType="LONGVARCHAR" property="resolutionNotes" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from reports
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="dto.ReportDto">
+    insert into reports (id, reporter_id, reported_type, 
+      reported_post_id, reported_member_id, reason, 
+      status, admin_id, resolved_at, 
+      action_taken, created_at, description, 
+      resolution_notes)
+    values (#{id,jdbcType=INTEGER}, #{reporterId,jdbcType=INTEGER}, #{reportedType,jdbcType=VARCHAR}, 
+      #{reportedPostId,jdbcType=INTEGER}, #{reportedMemberId,jdbcType=INTEGER}, #{reason,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{adminId,jdbcType=INTEGER}, #{resolvedAt,jdbcType=TIMESTAMP}, 
+      #{actionTaken,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{description,jdbcType=LONGVARCHAR}, 
+      #{resolutionNotes,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="dto.ReportDto">
+    update reports
+    set reporter_id = #{reporterId,jdbcType=INTEGER},
+      reported_type = #{reportedType,jdbcType=VARCHAR},
+      reported_post_id = #{reportedPostId,jdbcType=INTEGER},
+      reported_member_id = #{reportedMemberId,jdbcType=INTEGER},
+      reason = #{reason,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      admin_id = #{adminId,jdbcType=INTEGER},
+      resolved_at = #{resolvedAt,jdbcType=TIMESTAMP},
+      action_taken = #{actionTaken,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=LONGVARCHAR},
+      resolution_notes = #{resolutionNotes,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, reporter_id, reported_type, reported_post_id, reported_member_id, reason, 
+    status, admin_id, resolved_at, action_taken, created_at, description, resolution_notes
+    from reports
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, reporter_id, reported_type, reported_post_id, reported_member_id, reason, 
+    status, admin_id, resolved_at, action_taken, created_at, description, resolution_notes
+    from reports
+  </select>
+</mapper>

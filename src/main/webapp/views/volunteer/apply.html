@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>봉사 신청</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+  /* ===== Tokens / Reset ===== */
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  button,input,select,textarea{font:inherit}
+  a{text-decoration:none;color:inherit}
+
+  :root{
+    --bg:#F6F4F0;
+    --surface:#FFFFFF;
+    --text:#2B2B2B;
+    --muted:#8B857E;
+    --border:#E6E1DB;
+    --shadow:0 6px 18px rgba(0,0,0,.06);
+
+    --brand:#B08968;
+    --brand-strong:#8C6A4E;
+
+    --ok:#2E8B57;
+    --ok-bg:#DDF5E6;
+
+    --warn:#8A6D2A;
+    --warn-bg:#FBF0CC;
+
+    --danger:#C84E4E;
+    --danger-bg:#FAEAEA;
+
+    --radius-xl:16px;
+    --radius-lg:12px;
+  }
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans KR",sans-serif;
+    line-height:1.5; font-size:16px;
+  }
+
+  /* ===== Layout ===== */
+  main{
+    max-width:960px;
+    margin:0 auto;
+    padding:28px 20px 40px;
+  }
+  main > h1{
+    margin:0 0 18px 0;
+    font-size:26px; font-weight:900;
+    letter-spacing:-.2px;
+  }
+
+  /* ===== Section Card ===== */
+  section{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius-xl);
+    box-shadow:var(--shadow);
+    padding:18px;
+  }
+  section + section{ margin-top:14px; }
+  section > h2{
+    margin:0 0 12px 0;
+    font-size:18px; font-weight:800;
+  }
+
+  /* ===== Event details ===== */
+  section:first-of-type p{
+    margin:6px 0;
+    color:#4a4742;
+  }
+  /* 잔여 인원 강조 */
+  section:first-of-type p:last-child{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:8px 10px; border-radius:10px;
+    background:var(--warn-bg); color:var(--warn);
+    border:1px solid #F1E2B9; font-weight:800;
+  }
+
+  /* ===== Form ===== */
+  form{
+    display:flex; flex-direction:column; gap:14px;
+  }
+  form p{ margin:0; }
+
+  /* Label + control stack */
+  label{
+    display:inline-block; margin-bottom:6px; font-weight:800; color:#4b4b4b;
+  }
+  input[type="text"],
+  input[type="tel"],
+  select,
+  textarea{
+    width:100%;
+    height:40px;
+    padding:0 12px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:#fff; color:var(--text);
+    transition:border-color .12s ease, box-shadow .12s ease;
+  }
+  textarea{ height:auto; padding:10px 12px; resize:vertical; min-height:120px; }
+
+  input::placeholder, textarea::placeholder{ color:#B0AAA3 }
+
+  input:focus, select:focus, textarea:focus{
+    outline:none;
+    border-color:#D7C8B7;
+    box-shadow:0 0 0 3px rgba(176,137,104,.15);
+  }
+
+  /* HTML5 validation visuals */
+  input:required:invalid, select:required:invalid{
+    border-color:#E7C9C9;
+  }
+  input:required:valid, select:required:valid{
+    border-color:#CBEBD7;
+    box-shadow:0 0 0 3px rgba(46,139,87,.08);
+  }
+
+  /* Actions */
+  form p:last-child{
+    display:flex; gap:8px; flex-wrap:wrap;
+    margin-top:4px;
+  }
+  button{
+    height:40px; padding:0 16px; border-radius:12px; cursor:pointer;
+    font-weight:800;
+  }
+  button[type="submit"]{
+    border:none; color:#fff; background:var(--brand-strong);
+    box-shadow:0 6px 16px rgba(0,0,0,.12);
+  }
+  button[type="submit"]:hover{ filter:brightness(1.05) }
+
+  button[type="reset"]{
+    border:1px dashed var(--border); color:#6B6460; background:#fff;
+  }
+  button[type="reset"]:hover{ border-style:solid }
+
+  /* Helper: inline grid on wide screens */
+  @media (min-width:680px){
+    form p:not(:last-child){
+      display:grid; grid-template-columns: 160px 1fr; align-items:center; gap:14px;
+    }
+    label{ margin:0 }
+  }
+
+  /* Mobile tweaks */
+  @media (max-width:520px){
+    main{ padding:22px 14px 32px }
+    main > h1{ font-size:24px }
+    section{ padding:16px }
+  }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>봉사 신청</h1>
+
+    <!-- 이벤트 정보 -->
+    <section>
+      <h2>이벤트 정보</h2>
+      <p>행사명: 산책 봉사활동</p>
+      <p>일시: 2025-09-02(화) 10:00–12:00</p>
+      <p>보호소: 행복동물보호소</p>
+      <p>장소: 서울시 강남구 역삼동 123-45</p>
+      <p>정원: 12명 / 잔여: 3명</p>
+    </section>
+
+    <!-- 신청 폼 -->
+    <section>
+      <h2>신청 정보</h2>
+      <form method="get" action="">
+        <p>
+          <label for="name">이름 *</label>
+          <input type="text" id="name" name="name" required maxlength="50" placeholder="홍길동">
+        </p>
+
+        <p>
+          <label for="phone">연락처 *</label>
+          <input type="tel" id="phone" name="phone" placeholder="010-1234-5678" required pattern="^01[0-9]-\d{3,4}-\d{4}$">
+        </p>
+
+        <p>
+          <label for="role">희망 역할 *</label>
+          <select id="role" name="role" required>
+            <option value="">선택</option>
+            <option value="cleaning">청소</option>
+            <option value="feeding">급식</option>
+            <option value="walking">산책</option>
+          </select>
+        </p>
+
+        <p>
+          <label for="notes">비고</label>
+          <textarea id="notes" name="notes" rows="5" maxlength="500" placeholder="추가로 알려주실 내용을 적어주세요"></textarea>
+        </p>
+
+        <p>
+          <button type="submit">신청하기</button>
+          <button type="reset">초기화</button>
+        </p>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

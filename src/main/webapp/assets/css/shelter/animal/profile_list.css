@@ -1,0 +1,59 @@
+:root{
+    --bg:#f4efe9; --card:#fff; --line:#8a796a; --muted:#8f857c; --text:#2b2622;
+    --radius:16px; --shadow:0 2px 10px rgba(0,0,0,.06);
+    --soft:#fff7ea; --chip:#efe6dc; --accent:#efe7de;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans KR",system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1140px;margin:26px auto 80px;padding:0 16px}
+  
+  /* 헤더 */
+  .head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+  .h-left{display:flex;gap:10px;align-items:center}
+  .back{width:28px;height:28px;display:grid;place-items:center;border-radius:10px;background:#f0ece7;border:2px solid var(--line)}
+  .h1{margin:0;font-size:26px;font-weight:900}
+  .h-sub{margin:4px 0 0;color:#7b716a}
+  .h-actions{display:flex;gap:8px}
+  .btn{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;font-weight:700;cursor:pointer}
+  .btn.primary{background:var(--accent)}
+  
+  /* 툴바 */
+  .toolbar{display:flex;gap:10px;align-items:center;margin:14px 0}
+  .search{flex:1;display:flex;align-items:center;gap:8px;background:#fff;border:2.5px solid var(--line);border-radius:12px;padding:10px 12px}
+  .search input{border:0;outline:none;flex:1;font-size:14px;background:transparent}
+  .select{display:flex;align-items:center;gap:8px}
+  .select .btn{padding:10px 12px}
+  .badge-num{color:#7b716a;font-size:13px}
+  
+  /* 카드 그리드 */
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media (max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:840px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.grid{grid-template-columns:1fr}}
+  
+  .card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+  .thumb{position:relative;background:#faf5ee;height:150px;display:grid;place-items:center;border-bottom:2px solid var(--line)}
+  .thumb img{width:100%;height:150px;object-fit:cover}
+  .labs{position:absolute;right:8px;bottom:8px;display:flex;gap:6px}
+  .lab{background:#4f9fff;color:#fff;border-radius:999px;padding:4px 8px;font-size:12px}
+  .lab.orange{background:#ff934f}
+  .lab.purple{background:#7f6bff}
+  .lab.green{background:#2eaf6d}
+  .body{padding:12px}
+  
+  /* 본문 */
+  .title{font-weight:800;margin-bottom:2px}
+  .meta{color:#7a7169;font-size:12px;line-height:1.5;margin-top:6px}
+  .row-chips{margin-top:6px;display:flex;gap:6px;flex-wrap:wrap}
+  .chip{background:#f0efe9;border:2px solid var(--line);border-radius:999px;padding:2px 8px;font-size:12px}
+  .actions{display:flex;gap:8px;margin-top:10px}
+  .btn-sm{flex:1;border:2px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-weight:700;cursor:pointer}
+  
+  /* 이미지 없는 썸네일 */
+  .cam{display:grid;place-items:center;color:#b7ad9f;font-size:36px}
+  
+  /* 보기 전환 (리스트) */
+  .list .grid{grid-template-columns:1fr}
+  .list .card{display:grid;grid-template-columns:180px 1fr;align-items:stretch}
+  .list .thumb,.list .thumb img{height:100%}

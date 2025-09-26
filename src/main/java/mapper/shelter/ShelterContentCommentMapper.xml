@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ShelterContentCommentMapper">
+  <resultMap id="BaseResultMap" type="dto.ShelterContentCommentDto">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="content_id" jdbcType="INTEGER" property="contentId" />
+    <result column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="parent_comment_id" jdbcType="INTEGER" property="parentCommentId" />
+    <result column="like_count" jdbcType="INTEGER" property="likeCount" />
+    <result column="is_hidden" jdbcType="BOOLEAN" property="isHidden" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="is_deleted" jdbcType="BOOLEAN" property="isDeleted" />
+    <result column="comment_text" jdbcType="LONGVARCHAR" property="commentText" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from shelter_content_comments
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="dto.ShelterContentCommentDto">
+    insert into shelter_content_comments (id, content_id, member_id, 
+      parent_comment_id, like_count, is_hidden, 
+      created_at, updated_at, is_deleted, 
+      comment_text)
+    values (#{id,jdbcType=INTEGER}, #{contentId,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, 
+      #{parentCommentId,jdbcType=INTEGER}, #{likeCount,jdbcType=INTEGER}, #{isHidden,jdbcType=BOOLEAN}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BOOLEAN}, 
+      #{commentText,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="dto.ShelterContentCommentDto">
+    update shelter_content_comments
+    set content_id = #{contentId,jdbcType=INTEGER},
+      member_id = #{memberId,jdbcType=INTEGER},
+      parent_comment_id = #{parentCommentId,jdbcType=INTEGER},
+      like_count = #{likeCount,jdbcType=INTEGER},
+      is_hidden = #{isHidden,jdbcType=BOOLEAN},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BOOLEAN},
+      comment_text = #{commentText,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, content_id, member_id, parent_comment_id, like_count, is_hidden, created_at, 
+    updated_at, is_deleted, comment_text
+    from shelter_content_comments
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, content_id, member_id, parent_comment_id, like_count, is_hidden, created_at, 
+    updated_at, is_deleted, comment_text
+    from shelter_content_comments
+  </select>
+</mapper>

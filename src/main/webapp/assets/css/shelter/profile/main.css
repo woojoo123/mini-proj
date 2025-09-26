@@ -1,0 +1,63 @@
+:root{
+  --bg:#f4efe9; --card:#ffffff; --line:#8a796a; --muted:#8f857c; --text:#2b2622;
+  --radius:16px; --shadow:0 2px 10px rgba(0,0,0,.06);
+  --soft:#fff7ea; --chip:#efe6dc; --accent:#e9e2d8;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans KR",system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:inherit;text-decoration:none}
+
+.wrap{max-width:1100px;margin:26px auto 80px;padding:0 16px}
+.toprow{display:flex;justify-content:space-between;align-items:center;color:#6f675f;margin-bottom:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;font-weight:700;cursor:pointer}
+.cover{width:100%;height:240px;border-radius:14px;object-fit:cover;border:2.5px solid var(--line);}
+
+.grid{display:grid;grid-template-columns:1fr 320px;gap:18px;margin-top:14px}
+@media (max-width:980px){.grid{grid-template-columns:1fr}}
+
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.card.pad{padding:16px}
+
+/* 좌측 상단 프로필 블록 */
+.profile{display:grid;grid-template-columns:86px 1fr;gap:12px;align-items:start}
+.logo{width:86px;height:86px;border-radius:12px;border:2px solid var(--line);object-fit:cover;background:#eee}
+.name{display:flex;align-items:center;gap:8px}
+.name h1{margin:0;font-size:20px;font-weight:900}
+.rate{margin-left:auto;color:#7b726b;font-size:13px}
+.meta-line{display:flex;flex-wrap:wrap;gap:12px;color:#7b726b;font-size:13px}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.kpi{background:#f6f1eb;border:2px solid var(--line);border-radius:12px;padding:10px;text-align:center}
+.kpi b{font-size:18px}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.badge{background:var(--chip);border:2px solid var(--line);border-radius:999px;padding:6px 10px;font-size:12px}
+
+/* 섹션 공통 */
+.section{padding:14px}
+.section h3{margin:0 0 10px;font-size:16px}
+.desc{line-height:1.8;color:#4b443f;background:#f7f4ef;border:2px solid #e5d7c7;border-radius:12px;padding:12px}
+
+/* 특징 리스트 */
+.features{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;margin-top:6px}
+.features li{list-style:none;position:relative;padding-left:18px;color:#4e463f}
+.features li::before{content:"•";position:absolute;left:0;top:0}
+
+/* 탭 & 동물 카드 */
+.tabs{display:flex;gap:12px;margin:10px 0 8px}
+.tab{padding:8px 12px;border:2px solid var(--line);border-radius:999px;background:#fff;font-weight:800;cursor:pointer}
+.tab.active{background:var(--accent)}
+.petgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pet{display:grid;grid-template-columns:76px 1fr;gap:10px;border:2px solid var(--line);border-radius:12px;padding:10px;background:#fff}
+.pet img{width:76px;height:76px;border-radius:10px;border:2px solid var(--line);object-fit:cover}
+.pet .title{display:flex;gap:6px;align-items:center}
+.pet .title b{font-size:15px}
+.chip{background:#f0efe9;border:2px solid var(--line);border-radius:999px;padding:2px 8px;font-size:12px}
+.meta{font-size:12px;color:#7a7169;margin-top:2px}
+
+/* 우측 사이드 */
+.side .btn{width:100%;justify-content:center;margin-bottom:8px;background:#fff}
+.side .btn.primary{background:#efe7de}
+.side .small{font-size:12px;color:#8f857c;text-align:center;margin-top:4px}
+.side .line{height:1px;background:#eaded2;margin:8px 0}
+.kv{display:flex;justify-content:space-between;align-items:center;margin:6px 0;color:#4e463f}
+.info-row{display:flex;align-items:center;gap:8px;margin:6px 0;color:#4e463f}
+.sns a{display:block;margin:4px 0;color:#2b2622}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.MemberSocialLoginMapper">
+  <resultMap id="BaseResultMap" type="dto.MemberSocialLoginDto">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="provider" jdbcType="VARCHAR" property="provider" />
+    <result column="provider_id" jdbcType="VARCHAR" property="providerId" />
+    <result column="provider_email" jdbcType="VARCHAR" property="providerEmail" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from member_social_logins
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="dto.MemberSocialLoginDto">
+    insert into member_social_logins (id, member_id, provider, 
+      provider_id, provider_email, created_at, 
+      updated_at)
+    values (#{id,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, #{provider,jdbcType=VARCHAR}, 
+      #{providerId,jdbcType=VARCHAR}, #{providerEmail,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="dto.MemberSocialLoginDto">
+    update member_social_logins
+    set member_id = #{memberId,jdbcType=INTEGER},
+      provider = #{provider,jdbcType=VARCHAR},
+      provider_id = #{providerId,jdbcType=VARCHAR},
+      provider_email = #{providerEmail,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, member_id, provider, provider_id, provider_email, created_at, updated_at
+    from member_social_logins
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, member_id, provider, provider_id, provider_email, created_at, updated_at
+    from member_social_logins
+  </select>
+</mapper>
